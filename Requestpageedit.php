@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
+  <head>
+    <?php
+include 'header.php';
+?>
+<?php include 'connection.php'; ?>
+
+  </head>
+<?php 
+$msg="";
+$order_id=$_GET['id'];
+if(isset($_POST['updatevid']))
+{
+  // $user_id = $_POST['user_id'];
+  // $amount = $_POST['amount'];w
+  // $date = $_POST['date'];
+  // $image = $_POST['image'];
+$status = $_POST['status'];
+
+  
+$query="UPDATE wallet SET status='$status' WHERE id='$order_id'";
+$result_query=mysqli_query($conn,$query);
+
+if($result_query){
+
+    $msg="<div class='alert alert-success'>
+  <strong>Success!</strong> Deposit Request Edit Updated Done Succesfully.
+</div>";
+    //header("Location:update-cat.php");
+}
+else{
+$msg="<div class='alert alert-danger'>
+  <strong>Warning!</strong> Soory Deposit Request Is not Update in Database
+</div>";
+ }
+
+
+
+
+}
+
+?>
+  <body>
+    <div id="root">
+      
+          <!-- Menu End -->
+
+          <!-- Mobile Buttons Start -->
+          <div class="mobile-buttons-container">
+            <!-- Menu Button Start -->
+            <a href="#" id="mobileMenuButton" class="menu-button">
+              <i data-cs-icon="menu"></i>
+            </a>
+            <!-- Menu Button End -->
+          </div>
+          <!-- Mobile Buttons End -->
+        </div>
+        <div class="nav-shadow"></div>
+      </div>
+
+      <main>
+        <div class="container">
+        <!-- Title and Top Buttons Start -->
+        <div class="page-title-container">
+            <div class="row g-0">
+                <!-- Title Start -->
+                <div class="col-auto mb-3 mb-md-0 me-auto">
+                    <div class="w-auto sw-md-30">
+                        <a href="#" class="muted-link pb-1 d-inline-block breadcrumb-back">
+                            <i data-cs-icon="chevron-left" data-cs-size="13"></i>
+                            <span class="text-small align-middle">Home</span>
+                        </a>
+                        <h1 class="mb-0 pb-0 display-4" id="title">Edit Deposit Request</h1>
+                    </div>
+                </div>
+                <!-- Title End -->
+
+                         </div>
+        </div>
+        <!-- Title and Top Buttons End -->
+
+ 
+        <!-- Discount List Start -->
+                            <?php
+                    $order_id=$_GET['id'];
+                    $sql = "SELECT * FROM wallet where id=$order_id";
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+
+                    if(mysqli_num_rows($result) > 0) {
+                    ?>
+                    <?php
+                    while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                       <?php  echo $msg;?>
+
+                                <form method="post" action="" enctype="multipart/form-data">
+
+<br>
+
+<div class="row">
+    
+    <div class="col">
+        <label>Status</label>
+        <input type="text" class="form-control" name="status" colspan="2" value="<?php  echo $row['status']?>">
+    </div>
+</div>
+<br>
+
+   
+  </div>
+<br>
+<br>
+<br>
+<div class="row">
+        <div class="col text-center" >
+          <button   type="submit" value="Save" name="updatevid" class="btn  btn-icon btn-icon-end btn-primary">
+                            <span>Update</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-send"><path d="M12.6593 16.3217L17.5347 3.86248C17.7992 3.18632 17.9315 2.84824 17.8212 2.6442C17.7749 2.55869 17.7048 2.48852 17.6193 2.44227C17.4152 2.33191 17.0771 2.46421 16.401 2.72879L3.94178 7.60412L3.94177 7.60412C3.24083 7.87841 2.89035 8.01555 2.81681 8.23919C2.78604 8.33276 2.78359 8.43333 2.80977 8.52828C2.87235 8.75524 3.21574 8.90927 3.90252 9.21732L8.53015 11.293L8.53015 11.293C8.65873 11.3507 8.72302 11.3796 8.77576 11.4235C8.79906 11.4429 8.82056 11.4644 8.83997 11.4877C8.88389 11.5404 8.91273 11.6047 8.9704 11.7333L11.0461 16.3609C11.3542 17.0477 11.5082 17.3911 11.7352 17.4537C11.8301 17.4799 11.9307 17.4774 12.0243 17.4466C12.2479 17.3731 12.385 17.0226 12.6593 16.3217Z"></path><path d="M11.8995 8.36395L9.07107 11.1924"></path></svg>
+                        </button>
+    </div>
+
+
+</div>
+</form>
+                                 
+                                
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php  
+            }
+            ?>
+        </div>
+        <!-- Discount List End -->
+
+      
+         <!-- <div class="modal modal-right fade" id="discountAddModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Discount</h5>
+                        <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="post-form" action="addnotification.php" method="post" enctype="multipart/form-data">
+                            <div class="mb-3 w-100">
+                                <label class="form-label">User</label>
+                                <select  name="user_type" class="select-single-no-search">
+                                  <?php
+                                    $sql = "SELECT * FROM users";
+                                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+
+                                    while($row = mysqli_fetch_assoc($result)){
+                                    ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></option>
+                                  <?php } ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" name="title" class="form-control mask-text"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Messages</label>
+                                <input type="text"  name="message"  class="form-control mask-text"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">date</label>
+                                <input type="datetime-local"  name="date"  class="form-control mask-text"/>
+                            </div>
+                            <button type="submit" value="Save" class="btn btn-icon btn-icon-end btn-primary" >
+                            <span>Add</span>
+                            <i data-cs-icon="send"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer border-0">
+                    
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- Discount Add Modal End -->
+      </main>
+
+      <!-- Layout Footer Start -->
+      <footer>
+        
+      </footer>
+      <!-- Layout Footer End -->
+    </div>
+
+    <!-- Theme Settings Modal Start -->
+    <div
+      class="modal fade modal-right scroll-out-negative"
+      id="settings"
+      data-bs-backdrop="true"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="settings"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-scrollable full" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Theme Settings</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="scroll-track-visible">
+              <div class="mb-5" id="color">
+                <label class="mb-3 d-inline-block form-label">Color</label>
+                <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="light-blue" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="blue-light"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">LIGHT BLUE</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-blue" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="blue-dark"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DARK BLUE</span>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="light-red" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="red-light"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">LIGHT RED</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-red" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="red-dark"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DARK RED</span>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="light-green" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="green-light"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">LIGHT GREEN</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-green" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="green-dark"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DARK GREEN</span>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="light-purple" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="purple-light"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">LIGHT PURPLE</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-purple" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="purple-dark"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DARK PURPLE</span>
+                    </div>
+                  </a>
+                </div>
+
+                <div class="row d-flex g-3 justify-content-between flex-wrap mb-3">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="light-pink" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="pink-light"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">LIGHT PINK</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="dark-pink" data-parent="color">
+                    <div class="card rounded-md p-3 mb-1 no-shadow color">
+                      <div class="pink-dark"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DARK PINK</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="mb-5" id="navcolor">
+                <label class="mb-3 d-inline-block form-label">Override Nav Palette</label>
+                <div class="row d-flex g-3 justify-content-between flex-wrap">
+                  <a href="#" class="flex-grow-1 w-33 option col" data-value="default" data-parent="navcolor">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DEFAULT</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-33 option col" data-value="light" data-parent="navcolor">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-secondary figure-light top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">LIGHT</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-33 option col" data-value="dark" data-parent="navcolor">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-muted figure-dark top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">DARK</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="mb-5" id="behaviour">
+                <label class="mb-3 d-inline-block form-label">Menu Behaviour</label>
+                <div class="row d-flex g-3 justify-content-between flex-wrap">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="pinned" data-parent="behaviour">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary left large"></div>
+                      <div class="figure figure-secondary right small"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">PINNED</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="unpinned" data-parent="behaviour">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary left"></div>
+                      <div class="figure figure-secondary right"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">UNPINNED</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="mb-5" id="layout">
+                <label class="mb-3 d-inline-block form-label">Layout</label>
+                <div class="row d-flex g-3 justify-content-between flex-wrap">
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="fluid" data-parent="layout">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">FLUID</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-50 option col" data-value="boxed" data-parent="layout">
+                    <div class="card rounded-md p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary top"></div>
+                      <div class="figure figure-secondary bottom small"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">BOXED</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="mb-5" id="radius">
+                <label class="mb-3 d-inline-block form-label">Radius</label>
+                <div class="row d-flex g-3 justify-content-between flex-wrap">
+                  <a href="#" class="flex-grow-1 w-33 option col" data-value="rounded" data-parent="radius">
+                    <div class="card rounded-md radius-rounded p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">ROUNDED</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-33 option col" data-value="standard" data-parent="radius">
+                    <div class="card rounded-md radius-regular p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">STANDARD</span>
+                    </div>
+                  </a>
+                  <a href="#" class="flex-grow-1 w-33 option col" data-value="flat" data-parent="radius">
+                    <div class="card rounded-md radius-flat p-3 mb-1 no-shadow">
+                      <div class="figure figure-primary top"></div>
+                      <div class="figure figure-secondary bottom"></div>
+                    </div>
+                    <div class="text-muted text-part">
+                      <span class="text-extra-small align-middle">FLAT</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    <!-- Theme Settings Modal End -->
+
+    <!-- Search Modal Start -->
+    <div class="modal fade modal-under-nav modal-search modal-close-out" id="searchPagesModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header border-0 p-0">
+            <button type="button" class="btn-close btn btn-icon btn-icon-only btn-foreground" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body ps-5 pe-5 pb-0 border-0">
+            <input id="searchPagesInput" class="form-control form-control-xl borderless ps-0 pe-0 mb-1 auto-complete" type="text" autocomplete="off" />
+          </div>
+          <div class="modal-footer border-top justify-content-start ps-5 pe-5 pb-3 pt-3 border-0">
+            <span class="text-alternate d-inline-block m-0 me-3">
+              <i data-cs-icon="arrow-bottom" data-cs-size="15" class="text-alternate align-middle me-1"></i>
+              <span class="align-middle text-medium">Navigate</span>
+            </span>
+            <span class="text-alternate d-inline-block m-0 me-3">
+              <i data-cs-icon="arrow-bottom-left" data-cs-size="15" class="text-alternate align-middle me-1"></i>
+              <span class="align-middle text-medium">Select</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Search Modal End -->
+
+    <!-- Vendor Scripts Start -->
+    <script src="js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="js/vendor/OverlayScrollbars.min.js"></script>
+    <script src="js/vendor/autoComplete.min.js"></script>
+    <script src="js/vendor/clamp.min.js"></script>
+    <script src="js/vendor/imask.js"></script>
+    <script src="js/vendor/quill.min.js"></script>
+    <script src="js/vendor/quill.active.js"></script>
+    <script src="js/vendor/select2.full.min.js"></script>
+    <script src="js/vendor/tagify.min.js"></script>
+    <script src="js/vendor/dropzone.min.js"></script>
+    <!-- Vendor Scripts End -->
+
+    <!-- Template Base Scripts Start -->
+    <script src="font/CS-Line/csicons.min.js"></script>
+    <script src="js/base/helpers.js"></script>
+    <script src="js/base/globals.js"></script>
+    <script src="js/base/nav.js"></script>
+    <script src="js/base/search.js"></script>
+    <script src="js/base/settings.js"></script>
+    <script src="js/base/init.js"></script>
+    <!-- Template Base Scripts End -->
+    <!-- Page Specific Scripts Start -->
+    <script src="js/cs/dropzone.templates.js"></script>
+    <script src="js/pages/products.detail.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/scripts.js"></script>
+    <!-- Page Specific Scripts End -->
+  </body>
+</html>
