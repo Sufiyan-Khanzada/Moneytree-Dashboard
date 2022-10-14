@@ -285,11 +285,11 @@ include 'header.php';
                                     <a href='plan-user-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
                                      class="text-alternate">Edit</a>
                                 </div>
-                                <div
+                                <!-- <div
                                     class="col-4 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
                                     <a href='deleteplan_posting.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
                                      class="text-alternate">DELETE</a>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
