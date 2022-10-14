@@ -233,7 +233,7 @@ include 'header.php';
                                 <div
                                     class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['time'];?></div>
+                                    <div class="text-alternate"><?php echo $row['thumbnail'];?></div>
                                 </div>
                                 <div
                                     class="col-2 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4">
