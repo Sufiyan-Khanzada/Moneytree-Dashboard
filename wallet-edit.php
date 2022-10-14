@@ -13,13 +13,8 @@ $upd_id=$_GET['id'];
 if(isset($_POST['updatevid']))
 {
 
-
-
-
-    $img=$_FILES['file']['tmp_name'];
-
+$img=$_FILES['file']['tmp_name'];
 $userid=$_POST['userid'];
-
 $type=$_POST['transac'];
 $old_type=$_POST['old_type'];
 $amount=$_POST['amount'];
@@ -27,6 +22,7 @@ $amount=$_POST['amount'];
 $status=$_POST['status'];
 $old_status=$_POST['old_status'];
 $plan_name=$_POST['plan_name'];
+
 
 if($img!="")
 {
@@ -39,6 +35,8 @@ move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
 
 }
 else{
+// $query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
+
 $query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
 
 
@@ -52,13 +50,13 @@ $query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='
 
 
 if($type!="Select Type"){
-$query="UPDATE wallet SET user_id='$userid',tranaction_type='$type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$type',amount='$amount',image='$target_file',status='$status',plan_name='$plan_name' WHERE id='$upd_id'";
 }
 else{
 $query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
 }
 
-if($status!="Select Type"){
+if($status!="Select Status"){
 $query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$status',plan_name='$plan_name' WHERE id='$upd_id'";
 }
 else{
@@ -284,7 +282,12 @@ $id=$_GET['id'];
 <br>
 <div class="row">
         <div class="col text-center">
-            <img src="https://demo.code7labs.com/api/moneytree-backend/upload/<?php echo $row['image']; ?> " width=600 height=400>
+
+        <?php
+                $wallet ="http://localhost/Moneytree-Dashboard/".$row['image'];
+
+                ?>
+            <?php echo '<a href='.$wallet.'><img src='.$wallet. ' width=600 height=400></a>'?>
     </div>
 </div>
 
