@@ -231,10 +231,19 @@ include 'header.php';
                                     <div class="text-alternate"><?php echo $row['link'];?></div>
                                 </div>
                                 <div
+                               <?php 
+                                    
+                                    $images ="video-thumbnails/".$row['thumbnail'];
+              
+                                    ?>
                                     class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['thumbnail'];?></div>
+                                    <!-- <div class="text-alternate"><?php echo $row['thumbnail'];?></div> -->
+                                    <?php echo '<a href='.$images.'><img src='.$images. ' width=50 height=50></a>'?>
                                 </div>
+
+                                
+
                                 <div
                                     class="col-2 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4">
                                     <a href='videoedit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
