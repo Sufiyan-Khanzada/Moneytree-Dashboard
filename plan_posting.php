@@ -54,7 +54,7 @@ include 'header.php';
                         data-bs-target="#discountAddModal"
                     >
                         <i data-cs-icon="plus"></i>
-                        <span>Add Plan</span>
+                        <span>Add Profits</span>
                     </button>
                  
                     
@@ -250,7 +250,7 @@ include 'header.php';
                                 <br>
                                <div class="form-label" data-childselector="span">
                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="plan_title">
-  <option selected>Select Plans</option>
+  <option selected="">Select Plans</option>
   <option value="3 Months">3 Months</option>
   <option value="6 Months">6 Months</option>
   <option value="1 Year">  1 Year</option>
