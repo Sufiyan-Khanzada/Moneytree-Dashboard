@@ -76,7 +76,7 @@ $msg="<div class='alert alert-danger'>
                <div class="w-100 d-md-none"></div>
                 <div
                     class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
-                    <button
+                    <!-- <button
                         type="button"
                         class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto"
                         data-bs-toggle="modal"
@@ -84,9 +84,9 @@ $msg="<div class='alert alert-danger'>
                     >
                         <i data-cs-icon="plus"></i>
                         <span>Add Discount</span>
-                    </button>
+                    </button> -->
                     <div class="dropdown d-inline-block d-xl-none">
-                        <button
+                        <!-- <button
                             type="button"
                             class="btn btn-outline-primary btn-icon btn-icon-only ms-1"
                             data-bs-toggle="dropdown"
@@ -94,24 +94,24 @@ $msg="<div class='alert alert-danger'>
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
-                            <i data-cs-icon="sort"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end custom-sort">
+                            <i data-cs-icon="sort"></i> -->
+                       <!-- </button> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-end custom-sort">
                             <a class="dropdown-item sort" data-sort="code" href="#">Code</a>
                             <a class="dropdown-item sort" data-sort="type" href="#">Type</a>
                             <a class="dropdown-item sort" data-sort="date" href="#">Date</a>
                             <a class="dropdown-item sort" data-sort="usage" href="#">Usage</a>
                             <a class="dropdown-item sort" data-sort="status" href="#">Status</a>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div>
                     <div class="btn-group ms-1 check-all-container">
                         <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
                              data-target="#checkboxTable">
                     <span class="form-check float-end">
                       <input type="checkbox" class="form-check-input" id="checkAll"/>
                     </span>
-                        </div>
-                        <button
+                        </div> -->
+                        <!-- <button
                             type="button"
                             class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
                             data-bs-offset="0,3"
@@ -121,7 +121,7 @@ $msg="<div class='alert alert-danger'>
                         ></button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <button class="dropdown-item" id="deleteChecked" type="button">Delete</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- Top Buttons End -->
@@ -173,7 +173,7 @@ $id=$_GET['id'];
 <div class="row">
         <div class="col text-center" >
           <button   type="submit" value="Save" name="updatevid" class="btn  btn-icon btn-icon-end btn-primary">
-                            <span>Add</span>
+                            <span>Update</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-send"><path d="M12.6593 16.3217L17.5347 3.86248C17.7992 3.18632 17.9315 2.84824 17.8212 2.6442C17.7749 2.55869 17.7048 2.48852 17.6193 2.44227C17.4152 2.33191 17.0771 2.46421 16.401 2.72879L3.94178 7.60412L3.94177 7.60412C3.24083 7.87841 2.89035 8.01555 2.81681 8.23919C2.78604 8.33276 2.78359 8.43333 2.80977 8.52828C2.87235 8.75524 3.21574 8.90927 3.90252 9.21732L8.53015 11.293L8.53015 11.293C8.65873 11.3507 8.72302 11.3796 8.77576 11.4235C8.79906 11.4429 8.82056 11.4644 8.83997 11.4877C8.88389 11.5404 8.91273 11.6047 8.9704 11.7333L11.0461 16.3609C11.3542 17.0477 11.5082 17.3911 11.7352 17.4537C11.8301 17.4799 11.9307 17.4774 12.0243 17.4466C12.2479 17.3731 12.385 17.0226 12.6593 16.3217Z"></path><path d="M11.8995 8.36395L9.07107 11.1924"></path></svg>
                         </button>
     </div>
