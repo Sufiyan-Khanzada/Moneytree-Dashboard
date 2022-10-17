@@ -14,6 +14,13 @@
 
 
 </script> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
   <?php
 include 'header.php';
 ?>
@@ -211,92 +218,71 @@ include 'header.php';
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
                     ?>
-            <div class="col-12 mb-5">
-                <div class="card mb-2 bg-transparent no-shadow d-none d-lg-block">
-                    <div class="card-body pt-0 pb-0 sh-3">
-                        <div class="row g-0 h-100 align-content-center">
-                            <div class="col-12 col-lg-1 d-flex align-items-center mb-2 mb-lg-0 text-muted text-small">
-                                Id
-                            </div>
-                            <div
-                                class="col-6 col-lg-3 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                USER
-                            </div>
-                            <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Title
-                            </div>
-                            <div
-                                class="col-6 col-lg-3 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Messages
-                            </div>
-                            <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                               Date
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="checkboxTable">
-                <?php
-                while($row = mysqli_fetch_assoc($result)){
-                  $uid = $row['userid'];
-                  $sql2 = "SELECT email from users where id = $uid";
-                      $result2 = mysqli_query($conn, $sql2);
-                      if(mysqli_num_rows($result) > 0){
-                    while($row2 = mysqli_fetch_assoc($result2)){
-                    ?>
-                    <div class="card mb-2">
-                        <div class="card-body py-4 py-lg-0 sh-lg-8">
-                            <div class="row g-0 h-100 align-content-center">
-                                <div
-                                    class="col-11 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['id'];?></a>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row2['email'];?></a>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['title'];?></div>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate autoShowHide"><?php echo $row['message'];?></div>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['date'];?></div>
-                                </div>
-                                <div
-                                    class="col-2 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4">
-                                    <a href='notification-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Edit</a>
-                                </div>
-                                <!-- <div
-                                    class="col-4 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
-                                    <a href='deletenotification.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">DELETE</a>
-                                </div> -->
-                            </div>
-                        </div>
-                    </div>
+          <table  class="table table-bordered table-hover dt-responsive">  
+        <thead>  
+          <tr>  
+            <th> State </th>  
+            <th> Languages </th>  
+            <th> Population </th>  
+            <th> Median Age </th>  
+            <th> Area (Km?)</th>  
+          </tr>  
+        </thead>  
+        <tbody>  
+          <tr>  
+            <td> Andhra Pradesh </td>  
+            <td> English, Hindi </td>  
+            <td> 41,803,125</td>  
+            <td> 31.3 </td>  
+            <td> 2,780,387 </td>  
+          </tr>  
+          <tr>  
+            <td> Himachal Pradesh </td>  
+            <td> English 79%, native and other languages </td>  
+            <td> 23,630,169 </td>  
+            <td> 37.3 </td>  
+            <td> 7,739,983 </td>  
+          </tr>  
+          <tr>  
+            <td> Gwalier </td>  
+            <td> Hindi </td>  
+            <td> 11,128,40 </td>  
+            <td> 43.2 </td>  
+            <td> 131,956 </td>  
+          </tr>  
+          <tr>  
+            <td> Ludhiana </td>  
+            <td> Panjabi </td>  
+              <td> 23,630,169 </td>  
+            <td> 37.3 </td>  
+            <td> 7,739,983 </td>  
+          </tr>  
+          <tr>  
+            <td> Goa </td>  
+            <td> native </td>  
+           <td> 41,803,125</td>  
+            <td> 31.3 </td>  
+            <td> 2,780,387 </td>  
+          </tr>  
+          <tr>  
+            <td> Mumbai </td>  
+            <td> Native </td>  
+           <td> 23,630,169 </td>  
+            <td> 37.3 </td>  
+            <td> 7,739,983 </td>  
+          </tr>  
+        </tbody>  
+       
+          
+    
                     
             
                       <?php 
                     }
-                  }
-                      }
-                      } 
+              
                       ?>
+                       </tfoot>  
+      </table>
         </div>
         <!-- Discount List End -->
 
@@ -746,7 +732,9 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
-
+    <script>  
+$('table').DataTable();  
+</script>  
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>
@@ -777,4 +765,5 @@ include 'header.php';
     <script src="js/scripts.js"></script>
     <!-- Page Specific Scripts End -->
   </body>
+ 
 </html>

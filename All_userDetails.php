@@ -495,6 +495,19 @@ include 'header.php';
                      <?php
                      
                 while($row = mysqli_fetch_assoc($result)){
+                  $sql2 = "SELECT SUM(amount) as Total FROM wallet where tranaction_type='credit' AND user_id=".$_GET['id'];
+                  $result2 = mysqli_query($conn, $sql2);
+                  if(mysqli_num_rows($result) > 0){
+                while($row2 = mysqli_fetch_assoc($result2)){
+                  $sql3 = "SELECT SUM(amount) as TotalInvest FROM wallet where tranaction_type='add' AND user_id=".$_GET['id'];
+                  $result3 = mysqli_query($conn, $sql3);
+                  if(mysqli_num_rows($result) > 0){
+                    while($row3 = mysqli_fetch_assoc($result3)){
+                      $sql4 = "SELECT SUM(amount) as TotalGain FROM wallet WHERE tranaction_type='profit' AND status='Approved' AND user_id=".$_GET['id'];
+                      $result4 = mysqli_query($conn, $sql4);
+                      if(mysqli_num_rows($result) > 0){
+                        while($row4 = mysqli_fetch_assoc($result4)){
+
                 ?>
               <h2 class="small-title"  style="padding-top:10px">Total Investment</h2>
               <div class="col-6 col-md-4 col-lg-4">
@@ -507,7 +520,8 @@ include 'header.php';
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                       Wallet Balance
                                     </div>
-                                    <div class="text-primary cta-4"></div>
+
+                                    <div class="text-primary cta-4"><?php echo $row2['Total']-$row3['TotalInvest'];?></div>
                                 </div>
                             </div>
                             
@@ -523,7 +537,7 @@ include 'header.php';
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                    Total Investment
                                     </div>
-                                    <div class="text-primary cta-4">Rs.9000</div>
+                                    <div class="text-primary cta-4"><?php echo $row3['TotalInvest'];?></div>
                                 </div>
                             </div>
                             
@@ -539,7 +553,7 @@ include 'header.php';
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                   Total gain
                                     </div>
-                                    <div class="text-primary cta-4">Rs.9000</div>
+                                    <div class="text-primary cta-4"><?php echo $row4['TotalGain'];?></div>
                                 </div>
                             </div>
                             
@@ -551,7 +565,7 @@ include 'header.php';
                 
               <?php
 }
-                
+}}}}}}  
 ?>
 
 
