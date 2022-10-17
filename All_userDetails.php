@@ -716,12 +716,32 @@ include 'header.php';
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                  6 Months
                                     </div>
-                                    <div class="text-primary cta-4">Rs.9000</div>
+                                    <?php
+                    $sql = "SELECT SUM(amount)  as total1 FROM wallet  where plan_name ='BC_6Months' AND tranaction_type='add' AND user_id =".$_GET['id'];
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                    if(mysqli_num_rows($result) > 0) {
+                    
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                  $sql2 = "SELECT SUM(amount)  as total2 FROM wallet  where plan_name ='BC_6Months' AND tranaction_type='withdraw' AND user_id =".$_GET['id'];
+
+                      $result2 = mysqli_query($conn, $sql2);
+                      if(mysqli_num_rows($result) > 0){
+                    while($row2 = mysqli_fetch_assoc($result2)){
+                    ?>
+                                   <div class="text-primary cta-4"><?php  echo $row['total1']-$row2['total2']; ?></div>
                                 </div>
                             </div>
                         
-                          </div>
-                       
+                        
+
+              </div>
+              <?php 
+                    }
+                  }
+                      }
+                      } 
+                      ?>
 
                           <div class="col-6 col-md-4 col-lg-3">
                             <div class="card h-100 hover-scale-up cursor-pointer">
@@ -733,13 +753,33 @@ include 'header.php';
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                      10 Months
                                     </div>
-                                    <div class="text-primary cta-4">Rs. 50000</div>
+
+                                     <?php
+                    $sql = "SELECT SUM(amount)  as total1 FROM wallet  where plan_name ='BC_10Months' AND tranaction_type='add' AND user_id =".$_GET['id'];
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                    if(mysqli_num_rows($result) > 0) {
+                    
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                  $sql2 = "SELECT SUM(amount)  as total2 FROM wallet  where plan_name ='BC_10Months' AND tranaction_type='withdraw' AND user_id =".$_GET['id'];
+
+                      $result2 = mysqli_query($conn, $sql2);
+                      if(mysqli_num_rows($result) > 0){
+                    while($row2 = mysqli_fetch_assoc($result2)){
+                    ?>
+                                   <div class="text-primary cta-4"><?php  echo $row['total1']-$row2['total2']; ?></div>
                                 </div>
                             </div>
                         
-                          </div> 
+                        
 
-                  </div>
+              </div>
+              <?php 
+                    }
+                  }
+                      }
+                      } 
+                      ?>
                       
                           
                        <div class="row">
@@ -754,11 +794,31 @@ include 'header.php';
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                     Regular Savings
                                     </div>
-                                    <div class="text-primary cta-4">Rs.10000</div>
+                                    <?php
+                    $sql = "SELECT SUM(amount)  as total1 FROM wallet  where plan_name ='Regular Savings' AND tranaction_type='add' AND user_id =".$_GET['id'];
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                    if(mysqli_num_rows($result) > 0) {
+                    
+                while($row = mysqli_fetch_assoc($result)){
+                 
+                  $sql2 = "SELECT SUM(amount)  as total2 FROM wallet  where plan_name ='Regular Savings' AND tranaction_type='withdraw' AND user_id =".$_GET['id'];
+
+                      $result2 = mysqli_query($conn, $sql2);
+                      if(mysqli_num_rows($result) > 0){
+                    while($row2 = mysqli_fetch_assoc($result2)){
+                    ?>
+                                    <div class="text-primary cta-4"><?php  echo $row['total1']-$row2['total2']; ?></div>
                                 </div>
                             </div>
 
                             
+              </div>
+              <?php 
+                    }
+                  }
+                      }
+                      } 
+                      ?>
                         
                           </div>
                           </div>
