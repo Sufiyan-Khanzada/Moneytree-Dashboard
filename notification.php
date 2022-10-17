@@ -245,7 +245,7 @@ include 'header.php';
          
           <tr>  
           <td > <?php echo $row['id'];?></td>  
-            <td> <?php echo $row2['email'];?> </td>  
+            <td> <?php echo $row2['email'];?> </td> 
             <td> <?php echo $row['title'];?></td>  
             <td> <?php echo $row['message'];?> </td>  
             <td> <?php echo $row['date'];?> </td>  
@@ -253,36 +253,7 @@ include 'header.php';
                                      class="text-alternate">Edit</a></td>
             
           </tr>  
-          <!-- <tr>  
-            <td> Himachal Pradesh </td>  
-            <td> English 79%, native and other languages </td>  
-            <td> 23,630,169 </td>  
-            <td> 37.3 </td>  
-            <td> 7,739,983 </td>  
-          </tr>  
-        
-          <tr>  
-            <td> Ludhiana </td>  
-            <td> Panjabi </td>  
-              <td> 23,630,169 </td>  
-            <td> 37.3 </td>  
-            <td> 7,739,983 </td>  
-          </tr>  
-          <tr>  
-            <td> Goa </td>  
-            <td> native </td>  
-           <td> 41,803,125</td>  
-            <td> 31.3 </td>  
-            <td> 2,780,387 </td>  
-          </tr>  
-          <tr>  
-            <td> Mumbai </td>  
-            <td> Native </td>  
-           <td> 23,630,169 </td>  
-            <td> 37.3 </td>  
-            <td> 7,739,983 </td>  
-          </tr>   -->
-      
+       
        
           
     
@@ -296,6 +267,8 @@ include 'header.php';
                        </tfoot>  
       </table>
         </div>
+
+
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->

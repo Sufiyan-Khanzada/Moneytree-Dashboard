@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
     <?php
 include 'header.php';
 ?>
@@ -102,7 +109,7 @@ include 'header.php';
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                     <input class="form-control" placeholder="Search"/>
                     <span class="search-magnifier-icon">
@@ -112,7 +119,7 @@ include 'header.php';
                   <i data-cs-icon="close"></i>
                 </span>
                 </div>
-            </div>
+            </div> -->
             <!-- Search End -->
 
             <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
@@ -179,93 +186,68 @@ include 'header.php';
 
         <!-- Discount List Start -->
         <div class="row">
-                    <?php
+
+                     <?php
                     $sql = "SELECT * FROM  youtubelinks";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
 
                     if(mysqli_num_rows($result) > 0) {
+                      while($row = mysqli_fetch_assoc($result)){
+                      
                     ?>
-         <div class="col-12 mb-5">   
-                <div class="card mb-2 bg-transparent no-shadow d-none d-lg-block">
-                    <div class="card-body pt-0 pb-0 sh-3">
-                        <div class="row g-0 h-100 align-content-center">
-                            <div class="col-12 col-lg-2 d-flex align-items-center mb-2 mb-lg-0 text-muted text-small">
-                                ID
-                            </div>
-                            <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Title
-                            </div>
-                            <div
-                                class="col-6 col-lg-3 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Link
-                            </div>
-                            <div
-                                class="col-2 col-lg-4 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Thumbnail
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div id="checkboxTable">
-                    <?php
-                    while($row = mysqli_fetch_assoc($result)){
-                    ?>
-                   <div class="card mb-2">
-                        <div class="card-body py5 py-lg-0 sh-lg-8">
-                            <div class="row g-0 h-100 align-content-center">
-                                <div
-                                    class="col-11 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['id'];?></a>
-                                </div>
-                                <div
-                                    class="col-11 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['title'];?></a>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['link'];?></div>
-                                </div>
-                                <div
-                               <?php 
+                         <table  class="table table-striped table-hover  table-fixed">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col"> Id </th>  
+            <th scope="col"> Title </th>  
+            <th scope="col"> Link </th>  
+            <th scope="col"> Thumbnail </th>  
+            <th scope="col"> Action</th> 
+     
+             
+          </tr>  
+        </thead>
+        <tbody>  
+          
+        
+                    
+              
+         
+         
+          <tr>  
+            <td > <?php echo $row['id'];?></td>  
+            <td> <?php echo $row['title'];?> </td>  
+            <td> <?php echo $row['link'];?></td>  
+            <!-- <td> <?php echo $row['message'];?> </td>   -->
+            <td>
+            <?php 
                                     
                                     $images ="video-thumbnails/".$row['thumbnail'];
               
                                     ?>
-                                    class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-2 order-lg-2">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <!-- <div class="text-alternate"><?php echo $row['thumbnail'];?></div> -->
-                                    <?php echo '<a href='.$images.'><img src='.$images. ' width=50 height=50></a>'?>
-                                </div>
-
-                                
-
-                                <div
-                                    class="col-2 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4">
-                                    <a href='videoedit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Edit</a>
-                                </div>
-                                <div
-                                    class="col-4 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
-                                    <a href='deletevideo.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">DELETE</a>
-                                </div>     
-                                 
-                                
-                            </div>  
-                        </div>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-            <?php  
-            }
-            ?>
+              <?php echo '<a href='.$images.'><img src='.$images. ' width=50 height=50></a>'?>
+          </td>  
+           <td><a href='videoedit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Edit</a></td>
+            
+          </tr>  
+       
+       
+          
+    
+                    
+            
+                      <?php 
+                    }}
+                  
+                      ?>
+                        </tbody>  
+                    
+      </table>
         </div>
+
+
+
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -667,6 +649,10 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
+
+    <script>  
+$('table').DataTable();  
+</script>  
 
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
