@@ -80,15 +80,30 @@ include 'connection.php';
                                         class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
                                         <i data-cs-icon="dollar" class="text-primary"></i>
                                     </div>
+                                    <?php
+                    $sql = "SELECT SUM(amount) as total FROM wallet WHERE tranaction_type='add' OR tranaction_type='subtract'";
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                    if(mysqli_num_rows($result) > 0) {
+                    }
+                    ?>
+                    
+                     <?php  
+                     
+                while($row = mysqli_fetch_assoc($result)){
+                ?>
+
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
                                         Total Deposits
                                     </div>
-                                    <div class="text-primary cta-4">Rs. 315.20</div>
+                                    <div class="text-primary cta-4"><?php echo  $row['total'] ?></div>
                                 </div>
                             </div>
                         
                           </div>
-
+ <?php 
+                    }
+                  
+                      ?>
                           
                        <!-- Post Profit  -->
                        
