@@ -136,7 +136,7 @@ include 'header.php';
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                     <input class="form-control" placeholder="Search"/>
                     <span class="search-magnifier-icon">
@@ -146,7 +146,7 @@ include 'header.php';
                   <i data-cs-icon="close"></i>
                 </span>
                 </div>
-            </div>
+            </div> -->
             <!-- Search End -->
 
             <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
@@ -217,39 +217,50 @@ include 'header.php';
                     $sql = "SELECT * FROM  notifications";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
+                      ?>
+                       <table  class="table table-striped table-LIGHT tabel-bordered">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col"> Id </th>  
+            <th scope="col"> User </th>  
+            <th scope="col"> Title </th>  
+            <th scope="col"> Message </th>  
+            <th scope="col"> Date</th> 
+            <th scope="col"> Action</th> 
+             
+          </tr>  
+        </thead>
+        <tbody>  <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        $uid = $row['userid'];
+                        $sql2 = "SELECT email from users where id = $uid";
+                            $result2 = mysqli_query($conn, $sql2);
+                            if(mysqli_num_rows($result) > 0){
+                          while($row2 = mysqli_fetch_assoc($result2)){
+                          
                     ?>
-          <table  class="table table-bordered table-hover dt-responsive">  
-        <thead>  
+                    
+              
+         
+         
           <tr>  
-            <th> State </th>  
-            <th> Languages </th>  
-            <th> Population </th>  
-            <th> Median Age </th>  
-            <th> Area (Km?)</th>  
+          <td > <?php echo $row['id'];?></td>  
+            <td> <?php echo $row2['email'];?> </td>  
+            <td> <?php echo $row['title'];?></td>  
+            <td> <?php echo $row['message'];?> </td>  
+            <td> <?php echo $row['date'];?> </td>  
+           <td><a href='notification-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Edit</a></td>
+            
           </tr>  
-        </thead>  
-        <tbody>  
-          <tr>  
-            <td> Andhra Pradesh </td>  
-            <td> English, Hindi </td>  
-            <td> 41,803,125</td>  
-            <td> 31.3 </td>  
-            <td> 2,780,387 </td>  
-          </tr>  
-          <tr>  
+          <!-- <tr>  
             <td> Himachal Pradesh </td>  
             <td> English 79%, native and other languages </td>  
             <td> 23,630,169 </td>  
             <td> 37.3 </td>  
             <td> 7,739,983 </td>  
           </tr>  
-          <tr>  
-            <td> Gwalier </td>  
-            <td> Hindi </td>  
-            <td> 11,128,40 </td>  
-            <td> 43.2 </td>  
-            <td> 131,956 </td>  
-          </tr>  
+        
           <tr>  
             <td> Ludhiana </td>  
             <td> Panjabi </td>  
@@ -270,8 +281,8 @@ include 'header.php';
            <td> 23,630,169 </td>  
             <td> 37.3 </td>  
             <td> 7,739,983 </td>  
-          </tr>  
-        </tbody>  
+          </tr>   -->
+      
        
           
     
@@ -279,8 +290,9 @@ include 'header.php';
             
                       <?php 
                     }
-              
+                  }}}
                       ?>
+                        </tbody>  
                        </tfoot>  
       </table>
         </div>
@@ -767,3 +779,4 @@ $('table').DataTable();
   </body>
  
 </html>
+		
