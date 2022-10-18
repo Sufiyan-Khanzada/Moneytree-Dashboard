@@ -203,6 +203,7 @@ include 'header.php';
             <th scope="col"> Link </th>  
             <th scope="col"> Thumbnail </th>  
             <th scope="col"> Action</th> 
+            <th scope="col"> Action</th> 
      
              
           </tr>  
@@ -229,6 +230,8 @@ include 'header.php';
           </td>  
            <td><a href='videoedit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
                                      class="text-alternate">Edit</a></td>
+                                     <td><a href='deletevideo.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Delete</a></td>
             
           </tr>  
        
