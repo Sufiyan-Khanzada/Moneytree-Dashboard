@@ -245,6 +245,7 @@ include 'header.php';
                   
                       ?>
                         </tbody>  
+                        </tfoot> 
                     
       </table>
         </div>
