@@ -89,25 +89,20 @@ include 'header.php';
             <!-- Search End -->
 
             <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
-                <div class="d-inline-block">
-                   
-                  
-
-                  
-                </div>
+                
             </div>
-        </div>
+      
         <!-- Controls End -->
 
         <!-- Discount List Start -->
-        <div class="row" style="width: 100%;">
+      
       
         <?php
                   $sql = "SELECT * FROM  plan_posting ";
                   $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                  if(mysqli_num_rows($result) > 0) {
                  ?>
-                    <table  class="table table-striped ">  
+                    <table  class="table" style="width:100%">  
                     <thead class="thead-dark">
        <tr>  
             <th scope="col"> Id </th>  
@@ -167,7 +162,7 @@ include 'header.php';
                         </tfoot> 
                     
       </table>
-        </div>
+        
         
         <!-- Discount List End -->
 
