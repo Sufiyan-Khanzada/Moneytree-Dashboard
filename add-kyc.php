@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
 <?php
 include 'header.php';
 ?>
@@ -117,7 +124,7 @@ include 'header.php';
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                     <input class="form-control" placeholder="Search"/>
                     <span class="search-magnifier-icon">
@@ -127,10 +134,10 @@ include 'header.php';
                   <i data-cs-icon="close"></i>
                 </span>
                 </div>  
-            </div>
+            </div> -->
             <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                  <!-- Length Transcationtype Start -->
-                    <div class="dropdown-as-select d-inline-block" data-childSelector="span">
+                    <!-- <div class="dropdown-as-select d-inline-block" data-childSelector="span">
                         <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-bs-offset="0,3">
                     <span
@@ -153,7 +160,7 @@ include 'header.php';
                        
                         </div>
                     </div>
-            </div>
+            </div> -->
                 <!-- Length Transcationtype Start end -->
             <!-- Search End -->
 
@@ -176,65 +183,64 @@ include 'header.php';
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
                     ?>
-                     <?php
-                while($row = mysqli_fetch_assoc($result)){
-                 
-                   
-                    ?>
-            <div class="col-12 mb-5">
-               
-                            <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>NIC-Front</th>
-                <th>NIC-Back</th>
-                <th>Occupation</th>
-                <th>Address</th>
-                <th>Edit</th>
-                <th>Remove</th>
-
-
-
-            </tr>
+                       <table  class="table table-striped table-LIGHT tabel-bordered">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col"> Id </th>  
+            <th scope="col"> User ID </th>  
+            <th scope="col"> Name </th>  
+            <th scope="col"> Phone</th> 
+            <th scope="col"> NIC-Front</th> 
+            <th scope="col">NIC-Back</th>
+            <th scope="col">Address</th>
+            <th scope="col">Occupation</th>
+            <th scope="col">Action</th> 
+       
+             
+          </tr>  
         </thead>
-        <tbody>
-            <tr>
-
-                <?php
+        <tbody> 
+             
+        <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                    
+              
+         
+         
+          <tr>  
+          <?php
                 $nicf ="https://demo.code7labs.com/api/moneytree-backend/kyc-applications/storage/app/".$row['nic_front'];
                 $nicb ="https://demo.code7labs.com/api/moneytree-backend/kyc-applications/storage/app/".$row['nic_back'];
                 ?>
-                <td><?php echo $row['id'];?></td>
-                <td><?php echo $row['user_id'];?></td>
-                <td><?php echo $row['name'];?></td>
-                <td><?php echo $row['phone'];?></td>
-                <td><?php echo '<a href='.$nicf.'><img src='.$nicf. ' width=50 height=50></a>'?></td>
-                <td><?php echo  '<a href='.$nicf.'><img src='.$nicb. ' width=50 height=50></a>';?></td>
-                <td><?php echo $row['address'];?></td>
-                <td><?php echo $row['occupation'];?></td>
-                <td><a href='#?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Edit</a></td>
-                <td>
-                    <a href='delete-kyc.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Delete</a>
-                </td>
-                
-            </tr>
-          
-        </tbody>
+          <td > <?php echo $row['id'];?></td>  
+            <td> <?php echo $row['user_id'];?> </td> 
+            <td> <?php echo $row['name'];?></td>  
+            <td> <?php echo $row['phone'];?></td>  
+            <td> <?php echo '<a href='.$nicf.'><img src='.$nicf. ' width=50 height=50></a>'?></td>  
+            <td> <?php echo  '<a href='.$nicf.'><img src='.$nicb. ' width=50 height=50></a>';?></td>  
+            <td> <?php echo $row['address'];?></td>  
+            <td> <?php echo $row['occupation'];?> </td>  
+         
+                                     <td><a href='delete-kyc.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Delete</a></td>
+            
+          </tr>  
        
-    </table>   
+       
+          
+    
                     
             
                       <?php 
-                      }
-                      } 
+                    }
+                   }
                       ?>
+                        </tbody>  
+                       </tfoot>  
+      </table>
         </div>
+
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -646,7 +652,9 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
-
+<script>  
+$('table').DataTable();  
+</script>  
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>

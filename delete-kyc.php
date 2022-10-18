@@ -9,3 +9,4 @@ $sql = "DELETE FROM kycs WHERE id = {$b_id}";
 
 header("Location: http://demo.code7labs.com/Moneytree-Dashboard/add-kyc.php");
 ?>
+
