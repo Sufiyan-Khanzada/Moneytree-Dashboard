@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
   <?php
 include 'header.php';
 ?>
@@ -104,7 +111,7 @@ include 'header.php';
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                     <input class="form-control" placeholder="Search"/>
                     <span class="search-magnifier-icon">
@@ -114,7 +121,7 @@ include 'header.php';
                   <i data-cs-icon="close"></i>
                 </span>
                 </div>
-            </div>
+            </div> -->
             <!-- Search End -->
 
             <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
@@ -180,8 +187,62 @@ include 'header.php';
         <!-- Controls End -->
 
         <!-- Discount List Start -->
+
         <div class="row">
+
         <?php
+                   $sql = "SELECT * FROM  faqs";
+                   $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                   if(mysqli_num_rows($result) > 0) {
+                      ?>
+                       <table  class="table table-striped table-LIGHT tabel-bordered">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col"> Id </th>  
+            <th scope="col"> Question </th>  
+            <th scope="col"> Answer </th>  
+            <th scope="col"> Date</th> 
+            <th scope="col"> Action</th> 
+            <th scope="col"> Action</th> 
+             
+          </tr>  
+        </thead>
+        <tbody> 
+             
+        <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                    
+              
+         
+         
+          <tr>  
+          <td > <?php echo $row['id'];?></td>  
+            <td> <?php echo $row['question'];?> </td> 
+            <td> <?php echo $row['answer'];?></td>  
+            
+            <td> <?php echo $row['time'];?> </td>  
+           <td><a href='faqs-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Edit</a></td>
+                                     <td><a href='deletefaqs.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Delete</a></td>
+            
+          </tr>  
+       
+       
+          
+    
+                    
+            
+                      <?php 
+                    }
+                  
+                      ?>
+                        </tbody>  
+                       </tfoot>  
+      </table>
+        </div>
+        <!-- <?php
                     $sql = "SELECT * FROM  faqs";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
@@ -254,10 +315,10 @@ include 'header.php';
               
                       <?php 
                     }
-                  }
+                  }}  
                        
                       ?>
-        </div>
+        </div> -->
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -656,7 +717,9 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
-
+    <script>  
+$('table').DataTable();  
+</script>  
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>

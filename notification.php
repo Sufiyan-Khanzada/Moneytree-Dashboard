@@ -230,7 +230,9 @@ include 'header.php';
              
           </tr>  
         </thead>
-        <tbody>  <?php
+        <tbody> 
+          
+          <?php
                       while($row = mysqli_fetch_assoc($result)){
                         $uid = $row['userid'];
                         $sql2 = "SELECT email from users where id = $uid";
