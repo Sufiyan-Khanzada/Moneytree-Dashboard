@@ -195,6 +195,7 @@ include 'header.php';
                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                    if(mysqli_num_rows($result) > 0) {
                       ?>
+                        <div class="col-12 mb-12">
                        <table  class="table table-striped table-LIGHT tabel-bordered">  
                        <thead class="thead-dark">
           <tr>  
@@ -241,6 +242,7 @@ include 'header.php';
                         </tbody>  
                        </tfoot>  
       </table>
+        </div>
         </div>
         <!-- <?php
                     $sql = "SELECT * FROM  faqs";
