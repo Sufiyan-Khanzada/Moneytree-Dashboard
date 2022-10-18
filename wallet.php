@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
   <?php
 include 'header.php';
 ?>
@@ -103,7 +110,7 @@ include 'header.php';
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                     <input class="form-control" placeholder="Search"/>
                     <span class="search-magnifier-icon">
@@ -113,7 +120,7 @@ include 'header.php';
                   <i data-cs-icon="close"></i>
                 </span>
                 </div>
-            </div>
+            </div> -->
             <!-- Search End -->
 
             <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
@@ -180,7 +187,85 @@ include 'header.php';
 
         <!-- Discount List Start -->
         <div class="row">
+
         <?php
+                    $sql = "SELECT * FROM wallet";
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                    if(mysqli_num_rows($result) > 0) {
+                    ?>
+                       <table  class="table table-striped table-LIGHT tabel-bordered">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col">   Order_Id </th>  
+            <th scope="col">    User_id </th>  
+            <th scope="col">   Tranaction_type	 </th>  
+            <th scope="col"> Time</th> 
+            <th scope="col"> Amount</th> 
+            <th scope="col"> Image</th> 
+            <th scope="col"> Status</th> 
+            <th scope="col"> Action</th> 
+             
+          </tr>  
+        </thead>
+        <tbody> 
+             
+        <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        $uid = $row['user_id'];
+                        $sql2 = "SELECT id from users where id = $uid";
+                            $result2 = mysqli_query($conn, $sql2);
+                            if(mysqli_num_rows($result) > 0){
+                          while($row2 = mysqli_fetch_assoc($result2)){
+                          ?>
+                        
+                    
+              
+         
+         
+          <tr>  
+          <td > <?php echo $row['id'];?></td>  
+            <td> <?php echo $row2['id'];?> </td> 
+            <td> <?php echo $row['tranaction_type'];?></td>  
+            <td> <?php echo $row['time'];?></td>  
+            <td> <?php echo $row['amount'];?></td>  
+
+            <td> 
+            <?php 
+                                    
+                                    $images ="wallet_Pics/".$row['image'];
+              
+                                    ?>
+                                            <?php echo '<a href='.$images.'><img src='.$images. ' width=50 height=50></a>'?></div>
+
+            </td>  
+
+            <!-- <?php echo $row['image'];?>  -->
+            
+            <td> <?php echo $row['status'];?> </td>  
+
+           <td><a href='wallet-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Edit</a></td>
+                
+            
+          </tr>  
+       
+       
+          
+    
+                    
+            
+                      <?php 
+                    }
+                            }}
+                      ?>
+                        </tbody>  
+                       </tfoot>  
+      </table>
+        </div>
+
+
+
+        <!-- <?php
                     $sql = "SELECT * FROM wallet";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
@@ -281,11 +366,11 @@ include 'header.php';
                                     <a href='wallet-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
                                      class="text-alternate">Edit</a>
                                 </div>
-                                <!-- <div
+                                <div
                                     class="col-4 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
                                     <a href='delete-wallet.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
                                      class="text-alternate">DELETE</a>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -294,10 +379,10 @@ include 'header.php';
                       <?php 
                     }
                   }
-                      }
+                      }}
                       } 
                       ?>
-        </div>
+        </div> -->
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -709,7 +794,9 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
-
+    <script>  
+$('table').DataTable();  
+</script>  
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>
