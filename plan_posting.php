@@ -157,7 +157,7 @@ include 'header.php';
                     
             
                       <?php 
-                    }}}}}}
+                    }}}
                   
                       ?>
                         </tbody>  
@@ -273,8 +273,8 @@ include 'header.php';
                     
                     <?php 
                     }
-                  }
-                }}
+                  
+                  }}}}}}
               }
                       } 
                       ?>

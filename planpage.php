@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
   <?php
 include 'header.php';
 ?>
 <?php include 'connection.php'; ?>
   </head>
   <?php
-if(isset($_POST['filter'])){
+// if(isset($_POST['filter'])){
 
-$valuesearch=$_POST['search_value'];
-$query="SELECT * FROM  wallet WHERE ID=".$valuesearch;
-$search_result=filter_table($query);
-}
-else{
-$query="SELECT * FROM  wallet";
-$search_result=filter_table($query);
-}
-function filter_table($query){
-include "connection.php";
-$filter_result=mysqli_query($conn,$query);
-return $filter_result;
-}
-?>
+// $valuesearch=$_POST['search_value'];
+// $query="SELECT * FROM  wallet WHERE ID=".$valuesearch;
+// $search_result=filter_table($query);
+// }
+// else{
+// $query="SELECT * FROM  wallet";
+// $search_result=filter_table($query);
+// }
+// function filter_table($query){
+// include "connection.php";
+// $filter_result=mysqli_query($conn,$query);
+// return $filter_result;
+// }
+// ?>
   <body>
     <div id="root">
       
@@ -118,7 +125,7 @@ return $filter_result;
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                  <form>
 
@@ -140,10 +147,10 @@ return $filter_result;
                 
                 <input type="submit" name="filter" class="col-6 btn-" value="Search">
               </div>
-             
+              -->
               <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                  <!-- Length Start -->
-                    <div class="dropdown-as-select d-inline-block" data-childSelector="span">
+                    <!-- <div class="dropdown-as-select d-inline-block" data-childSelector="span">
                         <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-bs-offset="0,3">
                     <span
@@ -169,14 +176,14 @@ return $filter_result;
                             <a class="dropdown-item " href="#">BC_10Months</a>
                             <a class="dropdown-item " href="#">Regular Savings</a>
                         </div>
-                    </div>
+                    </div> -->
                     
                     <!-- Length End -->
  
                         </div>
                         <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                  <!-- Length Transcationtype Start -->
-                    <div class="dropdown-as-select d-inline-block" data-childSelector="span">
+                    <!-- <div class="dropdown-as-select d-inline-block" data-childSelector="span">
                         <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-bs-offset="0,3">
                     <span
@@ -202,7 +209,7 @@ return $filter_result;
                            
                         </div>
                     </div>
-            </div>
+            </div> -->
                 <!-- Length Transcationtype Start end -->
             <!-- Search End -->
 
@@ -214,6 +221,64 @@ return $filter_result;
 
         <!-- Discount List Start -->
         <div class="row">
+        <?php
+                   $sql = "SELECT * FROM wallet";
+                   $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                   if(mysqli_num_rows($result) > 0) {
+                   ?>
+                       <table  class="table table-striped table-LIGHT tabel-bordered">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col"> User_id </th>  
+            <th scope="col">    Plan title </th>  
+            <th scope="col">   Tranaction_type	 </th>  
+            <th scope="col"> Date</th> 
+            <th scope="col"> Amount</th> 
+      
+             
+          </tr>  
+        </thead>
+        <tbody> 
+             
+        <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        $uid = $row['user_id'];
+                        $sql2 = "SELECT id from users where id = $uid";
+                            $result2 = mysqli_query($conn, $sql2);
+                            if(mysqli_num_rows($result) > 0){
+                          while($row2 = mysqli_fetch_assoc($result2)){
+                          ?>
+                        
+                    
+              
+         
+         
+          <tr>  
+          <td > <?php echo $row['user_id'];?></td>  
+            <td> <?php echo $row['plan_name'];?> </td> 
+            <td> <?php echo $row['tranaction_type'];?></td>           
+            <td> <?php echo $row['time'];?> </td>              
+            <td> <?php echo $row['amount'];?> </td>  
+          
+            
+          </tr>  
+       
+       
+          
+    
+                    
+            
+                      <?php 
+                    }
+                            }}
+                      ?>
+                        </tbody>  
+                       </tfoot>  
+      </table>
+
+
+
+<!--           
         <?php
                     $sql = "SELECT * FROM wallet";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
@@ -290,7 +355,7 @@ return $filter_result;
                                     <div class="text-muted text-small d-lg-none"></div>
                                     &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
                                     <div class="text-alternate"><?php echo $row['amount'];?></div>
-                                </div>
+                                </div> -->
                                 <!-- <div
                                     class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
                                     <div class="text-muted text-small d-lg-none"></div>
@@ -315,18 +380,18 @@ return $filter_result;
                                     <a href='delete-wallet.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
                                      class="text-alternate">DELETE</a>
                                 </div> -->
-                            </div>
+                            <!-- </div>
                         </div>
                     </div>
                     
                
                       <?php 
                     }
-                  }
+                  }}
                       }
                       } 
                       ?>
-        </div>
+        </div> -->
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -738,7 +803,9 @@ return $filter_result;
       </div>
     </div>
     <!-- Search Modal End -->
-
+    <script>  
+$('table').DataTable();  
+</script>  
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>
