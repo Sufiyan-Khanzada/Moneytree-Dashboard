@@ -282,8 +282,14 @@ include 'connection.php';
                                     <div
                                     class="col-2 col-md-2 d-flex align-items-center text-muted mb-1 mb-md-0 justify-content-end justify-content-md-start">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['user_id'];?></div>
+                                  
+            <a href='All_userDetails.php?id=<?php echo $row['id']; ?>' target="_blank" class="text-truncate h-100 d-flex align-items-center"
+                                       data-bs-toggle="modal" ><?php echo $row['id'];?></a>    
+          
+                                    <!-- <div class="text-alternate"><?php echo $row['user_id'];?></div> -->
                                 </div>
+
+                                
                                 <div
                                 class="col-2 col-md-2 d-flex align-items-center text-muted mb-1 mb-md-0 justify-content-end justify-content-md-start">
                                     <div class="text-muted text-small d-lg-none"></div>

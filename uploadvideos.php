@@ -195,7 +195,7 @@ include 'header.php';
                       while($row = mysqli_fetch_assoc($result)){
                       
                     ?>
-                         <table  class="table table-striped table-hover  table-fixed">  
+                         <table  class="table table-striped table-hover  table-fixed" >  
                        <thead class="thead-dark">
           <tr>  
             <th scope="col"> Id </th>  

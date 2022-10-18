@@ -100,54 +100,57 @@ include 'header.php';
         <!-- Controls End -->
 
         <!-- Discount List Start -->
-        <div class="row">
-
-        <?php
-                   $sql = "SELECT * FROM  plan_posting ";
-                   $result = mysqli_query($conn, $sql) or die("Query Un successfully");
-                   if(mysqli_num_rows($result) > 0) {
-                   ?>
-                       <table  class="table table-striped table-LIGHT tabel-bordered">  
-                       <thead class="thead-dark">
-          <tr>  
-            <th scope="col"> Id </th>  
-            <th scope="col">       Plan ID	 </th>  
-            <th scope="col">    Plan Title </th>  
-            <th scope="col"> Date</th> 
-            <th scope="col"> Profit Percent</th> 
+        <div class="row" style="width: 100%;">
       
+        <?php
+                  $sql = "SELECT * FROM  plan_posting ";
+                  $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                 if(mysqli_num_rows($result) > 0) {
+                 ?>
+                    <table  class="table table-striped ">  
+                    <thead class="thead-dark">
+       <tr>  
+            <th scope="col"> Id </th>  
+            <th scope="col">   Plan ID	 </th>  
+            <th scope="col">    Plan Title </th>  
+            <th scope="col"> Date </th>  
+            <th scope="col">   Profit Percent</th> 
+         
+     
+             
           </tr>  
         </thead>
-        <tbody> 
-             
+        <tbody>  
+          
+               
         <?php
                       while($row = mysqli_fetch_assoc($result)){
                         $uid = $row['id'];
                         $sql2 = "SELECT id from plan_posting where id = $uid";
-                    
-                                  
-                            $result2 = mysqli_query($conn, $sql2);
-                            if(mysqli_num_rows($result) > 0){
-                          while($row2 = mysqli_fetch_assoc($result2)){
-                          
-                            
-                              $sql2 = "SELECT plan_mode from plans";
-                                  $result2 = mysqli_query($conn, $sql2);
-                                  if(mysqli_num_rows($result) > 0){
-                                while($row2 = mysqli_fetch_assoc($result2)){
-                                
-                        ?>
+                        $result2 = mysqli_query($conn, $sql2);
+                        if(mysqli_num_rows($result) > 0){
+                      while($row2 = mysqli_fetch_assoc($result2)){
+                      
+                        
+                          $sql2 = "SELECT plan_mode from plans";
+                              $result2 = mysqli_query($conn, $sql2);
+                              if(mysqli_num_rows($result) > 0){
+                            while($row2 = mysqli_fetch_assoc($result2)){
+                            ?>
+                        
+                        
                     
               
          
          
-          <tr>  
-          <td > <?php echo $row['id'];?></td>  
-            <td> <?php echo $row['plan_id'];?> </td> 
-            <td> <?php echo $row2['plan_mode'];?></td>  
-            <td> <?php echo $row['date'];?> </td>  
-            <td> <?php echo $row['profit_percent']."%";?> </td>  
-        
+          <tr >  
+            <td > <?php echo $row['id'];?></td>  
+            <td > <?php echo $row['plan_id'];?> </td>  
+            <td style="width: 140px" > <?php echo $row2['plan_mode'];?></td>  
+            <td > <?php echo $row['date'];?> </td>  
+            <td> <?php echo $row['profit_percent'];?> </td>  
+           
+      
             
           </tr>  
        
@@ -158,131 +161,13 @@ include 'header.php';
             
                       <?php 
                     }}}}}}
-                  
+                      
                       ?>
                         </tbody>  
-                       </tfoot>  
+                        </tfoot> 
+                    
       </table>
         </div>
-
-
-
-
-          
-        <!-- <?php
-                    $sql = "SELECT * FROM  plan_posting ";
-                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
-                    if(mysqli_num_rows($result) > 0) {
-                    ?>
-            <div class="col-12 mb-5">
-                <div class="card mb-2 bg-transparent no-shadow d-none d-lg-block">
-                    <div class="card-body pt-0 pb-0 sh-3">
-                        <div class="row g-0 h-100 align-content-center" id="example">
-                            <div class="col-12 col-lg-1 d-flex align-items-center mb-2 mb-lg-0 text-muted text-small">
-                                ID
-                            </div>
-                            <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Plan ID	
-                            </div>
-
-                            <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Plan Title	
-                            </div>
-                           
-                            
-                            <div
-                                class="col-6 col-lg-3 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Date
-                            </div>
-                            <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small text-center">
-                                Profit Percent
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="checkboxTable">
-                <?php
-                while($row = mysqli_fetch_assoc($result)){
-                  $uid = $row['id'];
-                  $sql2 = "SELECT id from plan_posting where id = $uid";
-              
-                            
-                      $result2 = mysqli_query($conn, $sql2);
-                      if(mysqli_num_rows($result) > 0){
-                    while($row2 = mysqli_fetch_assoc($result2)){
-                    
-                      
-                        $sql2 = "SELECT plan_mode from plans";
-                            $result2 = mysqli_query($conn, $sql2);
-                            if(mysqli_num_rows($result) > 0){
-                          while($row2 = mysqli_fetch_assoc($result2)){
-                          ?>
-
-                    
-                    <div class="card mb-2">
-                        <div class="card-body py-4 py-lg-0 sh-lg-8">
-                            <div class="row g-0 h-100 align-content-center">
-                                <div
-                                    class="col-11 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['id'];?></a>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['plan_id'];?></a>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row2['plan_mode'];?></a>
-                                </div>
-                                
-                                <div
-                                    class="col-6 col-lg-3 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['date'];?></div>
-                                </div>
-                                <div
-                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['profit_percent']."%";?></div>
-                                </div>
-                                 <div
-                                    class="col-2 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-4">
-                                    <a href='posting-edit.php?id=<?php echo $row['id']."&pid=".$row['id'];?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Edit</a>
-                                </div> 
-                                 <div
-                                    class="col-4 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
-                                    <a href='deleteplan_posting.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">DELETE</a>
-                                </div> 
-                                
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    
-                    <?php 
-                    }
-                  }
-                }}
-              }
-                      } 
-                      ?>
-
-
-
-</div> -->
-
         
         <!-- Discount List End -->
 
