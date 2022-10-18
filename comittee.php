@@ -1,6 +1,12 @@
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
   <!-- filter function -->
 
   <?php
@@ -119,7 +125,7 @@ include 'header.php';
         <!-- Controls Start -->
         <div class="row mb-2">
             <!-- Search Start -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                 <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
                     <input class="form-control" placeholder="Search"/>
                     <span class="search-magnifier-icon">
@@ -129,10 +135,10 @@ include 'header.php';
                   <i data-cs-icon="close"></i>
                 </span>
                 </div>
-                </div>
+                </div> -->
                 <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
                  <!-- Length Start -->
-                    <div class="dropdown-as-select d-inline-block" data-childSelector="span">
+                    <!-- <div class="dropdown-as-select d-inline-block" data-childSelector="span">
                         <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" data-bs-offset="0,3">
                     <span
@@ -151,7 +157,7 @@ include 'header.php';
                             <a class="dropdown-item" href="#">Unpaid</a>
                          
                         </div>
-                    </div>
+                    </div> -->
                     
                     <!-- Length End -->
                    
@@ -172,6 +178,59 @@ include 'header.php';
         <!-- Discount List Start -->
         <div class="row">
         <?php
+                    $sql = "SELECT * FROM committee_user group by committee_num";  
+                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+                    if(mysqli_num_rows($result) > 0) {
+                    ?>
+                       <table  class="table table-striped  tabel-bordered">  
+                       <thead class="thead-dark">
+          <tr>  
+            <th scope="col"> Id </th>  
+            <th scope="col">      User ID </th>  
+            <th scope="col"> Committee Ref# </th>  
+            <th scope="col">        Starting Month</th> 
+            <th scope="col"> Title</th> 
+            <th scope="col">    Status</th> 
+            <th scope="col">    Amount</th> 
+             
+          </tr>  
+        </thead>
+        <tbody> 
+             
+        <?php
+                      while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                    
+              
+         
+         
+          <tr>  
+          <td > <?php echo $row['id'];?></td>  
+            <td> <?php echo $row['user_id'];?> </td> 
+            <td> <?php echo $row['committee_num'];?></td>  
+            <td> <?php echo $row['committee_start_month'];?> </td>    
+            <td> <?php echo $row['title'];?> </td>  
+            <td> <?php echo $row['status'];?> </td>  
+            <td> <?php echo $row['amount'];?> </td>  
+          
+          </tr>  
+       
+       
+          
+    
+                    
+            
+                      <?php 
+                    }
+                  }
+                   
+                      ?>
+                        </tbody>  
+                       </tfoot>  
+      </table>
+        </div>
+        
+        <!-- <?php
                     $sql = "SELECT * FROM committee_user group by committee_num";  
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
@@ -226,11 +285,7 @@ include 'header.php';
                 <div id="checkboxTable">
                 <?php
                 while($row = mysqli_fetch_assoc($result)){
-                  // $uid = $row['userid'];
-                  // $sql2 = "SELECT email from users where id = $uid";
-                  //     $result2 = mysqli_query($conn, $sql2);
-                  //     if(mysqli_num_rows($result) > 0){
-                  //   while($row2 = mysqli_fetch_assoc($result2)){
+         
                     ?>
                     <div class="card mb-2">
                         <div class="card-body py-4 py-lg-0 sh-lg-8">
@@ -285,23 +340,7 @@ include 'header.php';
                                 </div>
                               
 
-                                <!-- <div
-                                    class="col-1 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
-                                     <a href='show_comittee.php?id=<?php echo $row['id']."&cid=".$row['committee_num']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Show More</a>
-                                </div>
-                                <div
-                                    class="col-1 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
-                                    <a href='delete_committee.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">DELETE</a>
-                                </div>
-                                 -->
-                                 <!-- <div
-                                    class="col-1 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5">
-                                    <a href=' .php' class="text-truncate h-100 d-flex align-items-center"
-    
-                                     class="text-alternate">View Details</a>
-                                </div> -->
+                             
                             </div>
                         </div>
                     </div>
@@ -312,7 +351,7 @@ include 'header.php';
                   }
                       
                       ?>
-        </div>
+        </div> -->
 
 
 
@@ -730,7 +769,9 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
-
+    <script>  
+$('table').DataTable();  
+</script>  
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>
