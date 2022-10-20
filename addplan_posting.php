@@ -19,5 +19,5 @@
     //     die(myqli_error);
     // }
 
-header("Location: http://localhost/Moneytree-Dashboard/plan_posting.php");
+header("Location: http://demo.code7labs.com/Moneytree-Dashboard/plan_posting.php");
 ?>

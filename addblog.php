@@ -14,5 +14,5 @@
     $sql = "INSERT INTO blog (blog_title,blog_long_discript,blog_short_discript,blog_image) VALUES ('$blog_title','$blog_long_discript','$blog_short_discript','$target_file')";
     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
 
-header("Location: http://localhost/Moneytree-Dashboard/blog.php");
+header("Location: http://demo.code7labs.com/Moneytree-Dashboard/blog.php");
 ?>

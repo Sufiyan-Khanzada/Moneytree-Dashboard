@@ -16,8 +16,8 @@
         echo "<script type=text/javascript>alert('withdrawl_request Added');</script>";
     }
     else{
-        die(myqli_error);
+        //die(myqli_error);
     }
 
-header("Location: http://localhost/Moneytree-Dashboard/Requestpage.php");
+header("Location: http://demo.code7labs.com/Moneytree-Dashboard/Requestpage.php");
 ?>

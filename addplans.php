@@ -12,5 +12,5 @@
     $result = mysqli_query($conn, $sql);
    
 
-header("Location: http://localhost/Moneytree-Dashboard/plans.php");
+header("Location: http://demo.code7labs.com/Moneytree-Dashboard/plans.php");
 ?>
