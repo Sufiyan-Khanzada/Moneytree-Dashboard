@@ -106,38 +106,26 @@ include 'header.php';
                     <thead class="thead-dark">
        <tr>  
             <th scope="col"> Id </th>  
-            <th scope="col">   Plan ID	 </th>  
-            <th scope="col">    Plan Title </th>  
+            <th scope="col"> Plan ID	 </th>  
+            <th scope="col"> Plan Title </th>  
             <th scope="col"> Date </th>  
-            <th scope="col">   Profit Percent</th> 
+            <th scope="col"> Profit Percent</th> 
          
      
              
           </tr>  
         </thead>
         <tbody>  
-          
-               
-        <?php
+           
+                          <?php
+                 
                       while($row = mysqli_fetch_assoc($result)){
-                        $uid = $row['id'];
-                        $sql2 = "SELECT id from plan_posting where id = $uid";
+                        $sql2 = "SELECT plan_mode from plans";
                         $result2 = mysqli_query($conn, $sql2);
-                        if(mysqli_num_rows($result) > 0){
-                      while($row2 = mysqli_fetch_assoc($result2)){
-                      
-                        
-                          $sql2 = "SELECT plan_mode from plans";
-                              $result2 = mysqli_query($conn, $sql2);
-                              if(mysqli_num_rows($result) > 0){
-                            while($row2 = mysqli_fetch_assoc($result2)){
-                            ?>
-                        
-                        
-                    
-              
-         
-         
+                        if(mysqli_num_rows($result2) > 0){
+                          while($row2 = mysqli_fetch_assoc($result2)){
+                          ?>
+  
           <tr >  
             <td > <?php echo $row['id'];?></td>  
             <td > <?php echo $row['plan_id'];?> </td>  
@@ -155,7 +143,7 @@ include 'header.php';
                     
             
                       <?php 
-                    }}}}}}
+                    }}}}
                       
                       ?>
                         </tbody>  

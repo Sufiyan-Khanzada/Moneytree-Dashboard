@@ -81,7 +81,7 @@ include 'connection.php';
                                         <i data-cs-icon="dollar" class="text-primary"></i>
                                     </div>
                                     <?php
-                    $sql = "SELECT SUM(amount) as total FROM wallet WHERE tranaction_type='add' OR tranaction_type='subtract'";
+                    $sql = "SELECT SUM(amount) as total FROM wallet WHERE tranaction_type='add' AND tranaction_type='subtract'";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
                     }
