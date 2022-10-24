@@ -120,10 +120,14 @@ include 'header.php';
                           <?php
                  
                       while($row = mysqli_fetch_assoc($result)){
-                        $sql2 = "SELECT plan_mode from plans";
-                        $result2 = mysqli_query($conn, $sql2);
-                        if(mysqli_num_rows($result2) > 0){
-                          while($row2 = mysqli_fetch_assoc($result2)){
+                       
+                          ?>
+
+                          <?php
+                           $sql2 = "SELECT plan_mode from plans";
+                           $result2 = mysqli_query($conn, $sql2) or die("Query Un successfully");;
+                           if(mysqli_num_rows($result2) > 0){
+                             while($row2 = mysqli_fetch_assoc($result2)){
                           ?>
   
           <tr >  
