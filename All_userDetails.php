@@ -50,7 +50,7 @@ include 'header.php';
 
                 <!-- Top Buttons Start -->
                 <div class="w-100 d-md-none"></div>
-                <!-- <div
+                <div
                     class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
                     <button
                         type="button"
@@ -59,7 +59,7 @@ include 'header.php';
                         data-bs-target="#discountAddModal"
                     >
                         <i data-cs-icon="plus"></i>
-                        <span>Add New Users </span>
+                        <span>Add Faqs</span>
                     </button>
                     <div class="dropdown d-inline-block d-xl-none">
                         <button
@@ -78,7 +78,7 @@ include 'header.php';
                             <a class="dropdown-item sort" data-sort="date" href="#">Date</a>
                             <a class="dropdown-item sort" data-sort="usage" href="#">Usage</a>
                             <a class="dropdown-item sort" data-sort="status" href="#">Status</a>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="btn-group ms-1 check-all-container">
                         <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
@@ -1051,21 +1051,21 @@ include 'header.php';
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New User</h5>
+                        <h5 class="modal-title">Add New Faqs</h5>
                         <button type="button" class="btn-close" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form class="post-form" action="addfaqs.php" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
-                                <label class="form-label">question</label>
+                                <label class="form-label">Question</label>
                                 <input type="text" name="question" class="form-control mask-text"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">answer</label>
+                                <label class="form-label">Answer</label>
                                 <input type="text"  name="answer"  class="form-control mask-text"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">time</label>
+                                <label class="form-label">Time</label>
                                 <input type="datetime-local"  name="time"  class="form-control mask-text"/>
                             </div>
                             <button type="submit" value="Save" class="btn btn-icon btn-icon-end btn-primary" >
