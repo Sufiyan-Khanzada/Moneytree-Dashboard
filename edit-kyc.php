@@ -1,38 +1,104 @@
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
-  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
-   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
-<?php
+    <?php
 include 'header.php';
 ?>
-<?php include 'connection1.php'; ?>
+<?php include 'connection.php'; ?>
+
   </head>
-<style type="text/css">
-    .autoShowHide {
-  white-space: nowrap; 
-  width: 200px; 
-  overflow: hidden;
-  text-overflow: ellipsis;
+<?php 
+$msg="";
+$upd_id=$_GET['id'];
+if(isset($_POST['updatevid']))
+{
+
+$img=$_FILES['file']['tmp_name'];
+$userid=$_POST['userid'];
+$type=$_POST['transac'];
+$old_type=$_POST['old_type'];
+$amount=$_POST['amount'];
+
+$status=$_POST['status'];
+$old_status=$_POST['old_status'];
+$plan_name=$_POST['plan_name'];
+
+
+if($img!="")
+{
+$name=$_FILES['file']['name'];
+$target_dir='wallet_Pics/';
+$target_file = $target_dir . basename($_FILES["file"]["name"]);
+move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
+
+
+
+}
+else{
+// $query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
+
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
+
+
 }
 
-.autoShowHide:hover {
-  white-space: normal; 
-  overflow: visible;
-  width: 100%; 
+
+
+
+//$date_upd=$_POST['create_date'];
+
+
+
+if($type!="Select Type"){
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$type',amount='$amount',image='$target_file',status='$status',plan_name='$plan_name' WHERE id='$upd_id'";
+}
+else{
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
+}
+
+if($status!="Select Status"){
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$status',plan_name='$plan_name' WHERE id='$upd_id'";
+}
+else{
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
+}
+
+
+if($status!="Select Type" && $type!='Select Type'){
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$type',amount='$amount',image='$target_file',status='$status',plan_name='$plan_name' WHERE id='$upd_id'";
+}
+else{
+$query="UPDATE wallet SET user_id='$userid',tranaction_type='$old_type',amount='$amount',image='$target_file',status='$old_status',plan_name='$plan_name' WHERE id='$upd_id'";
 }
 
 
 
-</style>
+
+$result_query=mysqli_query($conn,$query);
+
+if($result_query){
+
+    $msg="<div class='alert alert-success'>
+  <strong>Success!</strong> Plan Users Updated Done Succesfully.
+</div>";
+    //header("Location:update-cat.php");
+}
+else{
+$msg="<div class='alert alert-danger'>
+  <strong>Warning!</strong> Soory Plan Users Is not Update in Database
+</div>";
+ }
+
+
+
+
+}
+
+?>
   <body>
     <div id="root">
       
+          <!-- Menu End -->
 
           <!-- Mobile Buttons Start -->
           <div class="mobile-buttons-container">
@@ -59,13 +125,13 @@ include 'header.php';
                             <i data-cs-icon="chevron-left" data-cs-size="13"></i>
                             <span class="text-small align-middle">Home</span>
                         </a>
-                        <h1 class="mb-0 pb-0 display-4" id="title">KYC Applications</h1>
+                        <h1 class="mb-0 pb-0 display-4" id="title">Edit Kyc</h1>
                     </div>
                 </div>
                 <!-- Title End -->
 
                 <!-- Top Buttons Start -->
-                <!-- <div class="w-100 d-md-none"></div>
+              <!--  <div class="w-100 d-md-none"></div>
                 <div
                     class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
                     <button
@@ -115,133 +181,148 @@ include 'header.php';
                             <button class="dropdown-item" id="deleteChecked" type="button">Delete</button>
                         </div>
                     </div>
-                </div> -->
-                <!-- Top Buttons End -->
-            </div>
-        </div>
-        <!-- Title and Top Buttons End -->
-
-        <!-- Controls Start -->
-        <div class="row mb-2">
-            <!-- Search Start -->
-            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
-                <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-                    <input class="form-control" placeholder="Search"/>
-                    <span class="search-magnifier-icon">
-                  <i data-cs-icon="search"></i>
-                </span>
-                    <span class="search-delete-icon d-none">
-                  <i data-cs-icon="close"></i>
-                </span>
-                </div>  
-            </div> -->
-            <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
-                 <!-- Length Transcationtype Start -->
-                    <!-- <div class="dropdown-as-select d-inline-block" data-childSelector="span">
-                        <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" data-bs-offset="0,3">
-                    <span
-                        class="btn btn-foreground-alternate dropdown-toggle"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        data-bs-delay="0"
-                        title="Item Count"
-                    >
-
-          
-                    </span>
-
-                    
-                        </button>
-                        <div class="dropdown-menu shadow dropdown-menu-end">
-                            <a class="dropdown-item active " href="#">Select Options</a>
-                            <a class="dropdown-item " href="#">Approved</a>
-                            <a class="dropdown-item " href="#">UnApproved</a>
-                       
-                        </div>
-                    </div>
-            </div> -->
-                <!-- Length Transcationtype Start end -->
-            <!-- Search End -->
-
-            <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
-                <div class="d-inline-block">
-                   
-
-                  
-
                 </div>
-               
+                op Buttons End 
             </div>
         </div>
-        <!-- Controls End -->
-
+         Title and Top Buttons End 
+ -->
+ 
         <!-- Discount List Start -->
-        <div class="row">
-        <?php
-                    $sql = "SELECT * FROM  kycs";
+                            <?php
+$id=$_GET['id'];
+                    $sql = "SELECT * FROM wallet where id=$id";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+
                     if(mysqli_num_rows($result) > 0) {
                     ?>
-                           <div class="col-12 mb-5">
-                       <table  class="table table-striped table-LIGHT tabel-bordered">  
-                       <thead class="thead-dark">
-          <tr>  
-            <th scope="col"> Id </th>  
-            <th scope="col"> User ID </th>  
-            <th scope="col"> Name </th>  
-            <th scope="col"> Phone</th> 
-            <th scope="col"> NIC-Front</th> 
-            <th scope="col">NIC-Back</th>
-            <th scope="col">Address</th>
-            <th scope="col">Occupation</th>
-            <th scope="col">Action</th> 
-       
-             
-          </tr>  
-        </thead>
-        <tbody> 
-             
-        <?php
-                      while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                    
-              
-         
-         
-          <tr>  
-          <?php
-                $nicf ="https://demo.code7labs.com/api/moneytree-backend/kyc-applications/storage/app/".$row['nic_front'];
-                $nicb ="https://demo.code7labs.com/api/moneytree-backend/kyc-applications/storage/app/".$row['nic_back'];
-                ?>
-          <td > <?php echo $row['id'];?></td>  
-            <td> <?php echo $row['user_id'];?> </td> 
-            <td> <?php echo $row['name'];?></td>  
-            <td> <?php echo $row['phone'];?></td>  
-            <td> <?php echo '<a href='.$nicf.'><img src='.$nicf. ' width=50 height=50></a>'?></td>  
-            <td> <?php echo  '<a href='.$nicf.'><img src='.$nicb. ' width=50 height=50></a>';?></td>  
-            <td> <?php echo $row['address'];?></td>  
-            <td> <?php echo $row['occupation'];?> </td>  
-         
-                                     <td><a href='edit-kyc.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
-                                     class="text-alternate">Edit</a></td>
-            
-          </tr>  
-       
-       
-          
-    
-                    
-            
-                      <?php 
-                    }
-                   }
-                      ?>
-                        </tbody>  
-                       </tfoot>  
-      </table>
-        </div>   </div>
+                    <?php
+                    while($row = mysqli_fetch_assoc($result)){
+                    ?>
+                       <?php  echo $msg;?>
 
+                                <form method="post" action="" enctype="multipart/form-data">
+  <div class="row">
+    <!-- <div class="col">
+        <label>ID</label>
+      <input type="text" class="form-control" name="id" readonly value="<?php  echo $row['id']?>">
+    </div>
+    <div class="col">
+        <label>User ID</label>
+      <input type="text" class="form-control" name="userid" readonly value="<?php  echo $row['user_id']?>">
+    </div> -->
+</div>
+<br>
+    <div class="row">
+    <!-- <div class="col">
+        <label>Transaction Type</label>
+      <input type="text" class="form-control" name="old_type" readonly  value="<?php  echo $row['tranaction_type'];?>">
+
+    </div> -->
+<div class="col">
+    <!-- <label>New Type</label>
+
+    <select class="form-control" name="transac">
+        <option>Select Type</option>
+        <option>add</option>
+        <option>credit</option>
+        <option>profit</option>
+        <option>referal</option>
+        <option>substract</option>
+        <option>withdraw</option>
+        
+    </select> -->
+    </div>
+
+    <!-- <div class="col">
+        <label>Amount</label>
+      <input type="text" class="form-control" name="amount" readonly  value="<?php  echo $row['amount'];?>">
+
+    </div> -->
+</div>
+<br>
+<div class="row">
+
+<div class="col">
+        <!-- <label>Current Status</label>
+      <input type="text" class="form-control" name="old_status" readonly  value="<?php  echo $row['status'];?>"> -->
+
+    </div>
+
+
+<div class="col-12">
+    <label>Kyc Status</label>
+    <br>
+    <br>
+
+    <select class="form-control" name="status">
+        <option>Select Status</option>
+        <option>Approved</option>
+        <option>Pending</option>
+        <option>Rejected</option>
+      
+        
+    </select>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col">
+        <!-- <label>Plan Name</label>
+
+      <input type="text" class="form-control" name="plan_name"  value="<?php  echo $row['plan_name']?>"> -->
+    </div>
+
+    <div class="col">
+        <!-- <label>Wallet Picture</label>
+
+  <input type="file" class="form-control" id="file" name="file">     -->
+</div>
+    
+</div>
+<br>
+<br>
+<div class="row">
+        <!-- <div class="col text-center">
+
+        <?php
+                $wallet ="http://localhost/Moneytree-Dashboard/".$row['image'];
+
+                ?>
+            <?php echo '<a href='.$wallet.'><img src='.$wallet. ' width=600 height=400></a>'?>
+    </div> -->
+</div>
+
+
+
+
+
+
+  </div>
+<br>
+
+<div class="row">
+        <div class="col text-center" >
+          <button   type="submit" value="Save" name="updatevid" class="btn  btn-icon btn-icon-end btn-primary">
+                            <span>Update</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-send"><path d="M12.6593 16.3217L17.5347 3.86248C17.7992 3.18632 17.9315 2.84824 17.8212 2.6442C17.7749 2.55869 17.7048 2.48852 17.6193 2.44227C17.4152 2.33191 17.0771 2.46421 16.401 2.72879L3.94178 7.60412L3.94177 7.60412C3.24083 7.87841 2.89035 8.01555 2.81681 8.23919C2.78604 8.33276 2.78359 8.43333 2.80977 8.52828C2.87235 8.75524 3.21574 8.90927 3.90252 9.21732L8.53015 11.293L8.53015 11.293C8.65873 11.3507 8.72302 11.3796 8.77576 11.4235C8.79906 11.4429 8.82056 11.4644 8.83997 11.4877C8.88389 11.5404 8.91273 11.6047 8.9704 11.7333L11.0461 16.3609C11.3542 17.0477 11.5082 17.3911 11.7352 17.4537C11.8301 17.4799 11.9307 17.4774 12.0243 17.4466C12.2479 17.3731 12.385 17.0226 12.6593 16.3217Z"></path><path d="M11.8995 8.36395L9.07107 11.1924"></path></svg>
+                        </button>
+    </div>
+
+
+</div>
+</form>
+                                 
+                                
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php  
+            }
+            ?>
+        </div>
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -316,7 +397,7 @@ include 'header.php';
         </div>
         <!-- Discount Detail Modal End -->
 
-        <div class="modal modal-right fade" id="discountAddModal" tabindex="-1" role="dialog" aria-hidden="true">
+         <div class="modal modal-right fade" id="discountAddModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -363,27 +444,11 @@ include 'header.php';
             </div>
         </div>
         <!-- Discount Add Modal End -->
-    </div>
       </main>
 
       <!-- Layout Footer Start -->
       <footer>
-        <div class="footer-content">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-sm-6">
-                <p class="mb-0 text-muted text-medium">Colored Strategies 2021</p>
-              </div>
-              <div class="col-sm-6 d-none d-sm-block">
-                <ul class="breadcrumb pt-0 pe-0 mb-0 float-end">
-                  <li class="breadcrumb-item mb-0 text-medium"><a href="#" class="btn-link">Review</a></li>
-                  <li class="breadcrumb-item mb-0 text-medium"><a href="#" class="btn-link">Purchase</a></li>
-                  <li class="breadcrumb-item mb-0 text-medium"><a href="#" class="btn-link">Docs</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </footer>
       <!-- Layout Footer End -->
     </div>
@@ -624,9 +689,7 @@ include 'header.php';
       </div>
     </div>
 
-    <button type="button" class="btn settings-button btn-gradient-primary" data-bs-toggle="modal" data-bs-target="#settings" id="settingsButton">
-      <i data-cs-icon="paint-roller" class="position-relative"></i>
-    </button>
+   
     <!-- Theme Settings Modal End -->
 
     <!-- Search Modal Start -->
@@ -653,9 +716,7 @@ include 'header.php';
       </div>
     </div>
     <!-- Search Modal End -->
-<script>  
-$('table').DataTable();  
-</script>  
+
     <!-- Vendor Scripts Start -->
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script src="js/vendor/bootstrap.bundle.min.js"></script>
@@ -685,4 +746,5 @@ $('table').DataTable();
     <script src="js/common.js"></script>
     <script src="js/scripts.js"></script>
     <!-- Page Specific Scripts End -->
-  </body>5210</html>
+  </body>
+</html>
