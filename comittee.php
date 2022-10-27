@@ -208,7 +208,7 @@ include 'header.php';
  <div class="row"  id="table">
         <?php
           
-          $sql = "SELECT * FROM committee_user group by committee_num";  
+          $sql = "SELECT * FROM committee_user WHERE committee_num='1658848730'";  
           $result = mysqli_query($conn, $sql) or die("Query Un successfully");
           if(mysqli_num_rows($result) > 0) {
           ?>
@@ -268,13 +268,13 @@ include 'header.php';
                                     class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['amount'];?></a>
+                                       data-bs-toggle="modal" ><?php echo $row['committee_num'];?></a>
                                 </div>
                                 <div
                                     class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['amount'];?></a>
+                                       data-bs-toggle="modal" ><?php echo $row['committee_start_month'];?></a>
                                 </div>
                              
                                 <div
@@ -291,7 +291,7 @@ include 'header.php';
                                 <div
                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['status'];?></div>
+                                    <div class="text-alternate"><?php echo $row['amount'];?></div>
                                 </div>
                                 
                             </div>
