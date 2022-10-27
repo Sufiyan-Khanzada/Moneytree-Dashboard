@@ -99,22 +99,25 @@ include 'header.php';
                                 User_id
                             </div>
                             <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
                                 Amount	
                             </div>
-                            
+                            <div
+                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                Transaction Type	
+                            </div>
                             <div
                                 class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
                                 Date
                             </div>
                            
                             <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Image	
+                                class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                Image
                             </div>
                             <div
                                 class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Status	
+                                Status
                             </div>
                         </div>
                     </div>
@@ -149,12 +152,18 @@ include 'header.php';
                                        data-bs-toggle="modal" ><?php echo $row['user_id'];?></a>
                                 </div>
                                 <div
-                                    class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
+                                    class="col-6   col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <a href="#" class="text-truncate h-100 d-flex align-items-center"
                                        data-bs-toggle="modal" ><?php echo $row['amount'];?></a>
                                 </div>
-                                
+                                <div
+                                    class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
+                                    <div class="text-muted text-small d-lg-none"></div>
+                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
+                                       data-bs-toggle="modal" ><?php echo $row['tranaction_type'];?></a>
+                                </div>
+                             
                                 <div
                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3">
                                     <div class="text-muted text-small d-lg-none"></div>
@@ -166,7 +175,7 @@ include 'header.php';
               
                                     ?>
                                     <div
-                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                     class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <div class="text-alternate"><?php echo '<a href='.$images.'><img src='.$images. ' width=50 height=50></a>'?></div>
                                 </div>
@@ -275,25 +284,28 @@ include 'header.php';
                             </div>
                             <div
                                 class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                User_idd
+                                User_id
+                            </div>
+                            <div
+                                class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                Amount	
                             </div>
                             <div
                                 class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Amountt	
+                                Transaction Type	
                             </div>
-                            
                             <div
                                 class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
                                 Date
                             </div>
                            
                             <div
-                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Imagee	
+                                class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                Image
                             </div>
                             <div
                                 class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                                Statuss	
+                                Status
                             </div>
                         </div>
                     </div>
@@ -326,12 +338,17 @@ include 'header.php';
                                        data-bs-toggle="modal" ><?php echo $row['user_id'];?></a>
                                 </div>
                                 <div
-                                    class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
+                                    class="col-6   col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <a href="#" class="text-truncate h-100 d-flex align-items-center"
                                        data-bs-toggle="modal" ><?php echo $row['amount'];?></a>
                                 </div>
-                                
+                                <div
+                                    class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
+                                    <div class="text-muted text-small d-lg-none"></div>
+                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
+                                       data-bs-toggle="modal" ><?php echo $row['tranaction_type'];?></a>
+                                </div>
                                 <div
                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3">
                                     <div class="text-muted text-small d-lg-none"></div>
@@ -343,7 +360,7 @@ include 'header.php';
               
                                     ?>
                                     <div
-                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                     class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <div class="text-alternate"><?php echo '<a href='.$images.'><img src='.$images. ' width=50 height=50></a>'?></div>
                                 </div>

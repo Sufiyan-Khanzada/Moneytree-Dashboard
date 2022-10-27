@@ -272,7 +272,9 @@ include 'header.php';
 <div>
 <!-- <p class="text-small text-muted mb-2">BILLING ADDRESS</p> -->
 <!-- <div class="col text-alternate align-middle">Blaine Cottrell</div> -->
+
 </div>
+
 </div>
 
   
@@ -285,15 +287,6 @@ include 'header.php';
 </div>
 
 </div>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div>
 
 </div>
 </div>
@@ -303,10 +296,38 @@ include 'header.php';
 </div>
 
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 
 </div>
+
 <br>
+<div class="card-body">
+
+<form>
+<div class="mb-3">
+<label class="form-label">Total Gain</label>
+<input type="text" class="form-control ">
+</div>
+
+</form>
+</div>
+<div class="row">
+        <div class="col text-center" >
+          <button   type="submit" value="Save" name="updatevid" class="btn  btn-icon btn-icon-end btn-primary">
+                            <span>Add</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="cs-icon cs-icon-send"><path d="M12.6593 16.3217L17.5347 3.86248C17.7992 3.18632 17.9315 2.84824 17.8212 2.6442C17.7749 2.55869 17.7048 2.48852 17.6193 2.44227C17.4152 2.33191 17.0771 2.46421 16.401 2.72879L3.94178 7.60412L3.94177 7.60412C3.24083 7.87841 2.89035 8.01555 2.81681 8.23919C2.78604 8.33276 2.78359 8.43333 2.80977 8.52828C2.87235 8.75524 3.21574 8.90927 3.90252 9.21732L8.53015 11.293L8.53015 11.293C8.65873 11.3507 8.72302 11.3796 8.77576 11.4235C8.79906 11.4429 8.82056 11.4644 8.83997 11.4877C8.88389 11.5404 8.91273 11.6047 8.9704 11.7333L11.0461 16.3609C11.3542 17.0477 11.5082 17.3911 11.7352 17.4537C11.8301 17.4799 11.9307 17.4774 12.0243 17.4466C12.2479 17.3731 12.385 17.0226 12.6593 16.3217Z"></path><path d="M11.8995 8.36395L9.07107 11.1924"></path></svg>
+                        </button>
+    </div>
 
 <h4>Details</h4>
   

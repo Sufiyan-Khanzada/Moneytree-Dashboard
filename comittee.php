@@ -1,6 +1,24 @@
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">  
+  <!-- <script>
+function showTable(){
+document.getElementById('table').style.visibility = "visible";
+}
+function hideTable(){
+document.getElementById('table').style.visibility = "hidden";
+}
+</script> -->
+
+<script>
+function myFunction() {
+  var x = document.getElementById("table");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
@@ -122,58 +140,7 @@ include 'header.php';
         </div>
         <!-- Title and Top Buttons End -->
 
-        <!-- Controls Start -->
-        <div class="row mb-2">
-            <!-- Search Start -->
-            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
-                <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
-                    <input class="form-control" placeholder="Search"/>
-                    <span class="search-magnifier-icon">
-                  <i data-cs-icon="search"></i>
-                </span>
-                    <span class="search-delete-icon d-none">
-                  <i data-cs-icon="close"></i>
-                </span>
-                </div>
-                </div> -->
-                <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
-                 <!-- Length Start -->
-                    <!-- <div class="dropdown-as-select d-inline-block" data-childSelector="span">
-                        <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" data-bs-offset="0,3">
-                    <span
-                        class="btn btn-foreground-alternate dropdown-toggle"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        data-bs-delay="0"
-                        title="Item Count"
-                    >
-
-                    Select Option
-                    </span>
-                        </button>
-                        <div class="dropdown-menu shadow dropdown-menu-end" name="fetchval" id="fetchval">
-                            <a class="dropdown-item">Paid</a>
-                            <a class="dropdown-item" href="#">Unpaid</a>
-                         
-                        </div>
-                    </div> -->
-                    
-                    <!-- Length End -->
-                   
- 
-                        </div>
-
-            </div>
-            
-
-            <!-- Search End -->
-
-             
-            </div>
-
-        </div>
-        <!-- Controls End -->
+    
 
         <!-- Discount List Start -->
         <div class="row">
@@ -190,6 +157,7 @@ include 'header.php';
             <th scope="col"> Committee Ref# </th>  
             <th scope="col">        Starting Month</th> 
             <th scope="col"> Title</th> 
+            <th scope="col"> Month</th> 
             <th scope="col">    Status</th> 
             <th scope="col">    Amount</th> 
              
@@ -210,14 +178,22 @@ include 'header.php';
             <td> <?php echo $row['committee_num'];?></td>  
             <td> <?php echo $row['committee_start_month'];?> </td>    
             <td> <?php echo $row['title'];?> </td>  
+            <td> <?php echo $row['months'];?> </td>  
             <td> <?php echo $row['status'];?> </td>  
             <td> <?php echo $row['amount'];?> </td>  
-          
+            <td>
+              <a class="text-truncate h-100 d-flex align-items-center"
+              class="text-alternate" type='button' onclick="myFunction()">View Details</a>
+              <!-- <a  class="text-truncate h-100 d-flex align-items-center"
+              class="text-alternate" type='button' onClick='javascript:hideTable();'>Hide</a> -->
+                                     
+                                    </td>
           </tr>  
        
        
           
-    
+    <!-- <input type='button' onClick='javascript:showTable();' value='show'>
+     <input type='button' onClick='javascript:hideTable();' value='hide'> -->
                     
             
                       <?php 
@@ -230,131 +206,119 @@ include 'header.php';
       </table>
         </div>
         
-        <!-- <?php
-                    $sql = "SELECT * FROM committee_user group by committee_num";  
-                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
-                    if(mysqli_num_rows($result) > 0) {
-                    ?>
+       
+                            <!-- Details Committee -->
+
+ <div class="row"  id="table">
+        <?php
+          
+          $sql = "SELECT * FROM committee_user group by committee_num";  
+          $result = mysqli_query($conn, $sql) or die("Query Un successfully");
+          if(mysqli_num_rows($result) > 0) {
+          ?>
             <div class="col-12 mb-5">
                 <div class="card mb-2 bg-transparent no-shadow d-none d-lg-block">
                     <div class="card-body pt-0 pb-0 sh-3">
                         <div class="row g-0 h-100 align-content-center">
-
-                            <div class="col-12 col-lg-1 d-flex align-items-center mb-2 mb-lg-0 text-muted text-small">
-                            ID
-                            </div>
-
-                            <div class="col-12 col-lg-1 d-flex align-items-center mb-2 mb-lg-0 text-muted text-small">
-                             User ID
+                            <!-- <div class="col-12 col-lg-1 d-flex align-items-center mb-2 mb-lg-0 text-muted text-small">
+                                Order_Id
+                            </div> -->
+                            <div
+                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                User_id
                             </div>
                             <div
-                            class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                            Committee Ref#
+                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                Committee Ref# 
                             </div>
-                            
                             <div
                                 class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
                                 Starting Month
                             </div>
-                          
-
-                          
                             <div
                                 class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                          Title
-                            
-                          </div>
-                        
+                                Title
+                            </div>
+                           
+                            <div
+                                class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
+                                Status
+                            </div>
                             <div
                                 class="col-6 col-lg-1 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                              Status
-                            </div> 
-
-                            <div
-                            class="col-6 col-lg-2 d-flex align-items-center text-alternate text-medium text-muted text-small">
-                               Amount
+                                Amount
                             </div>
-
-                         
-
-                            
-
                         </div>
                     </div>
                 </div>
                 <div id="checkboxTable">
+      
+               
                 <?php
                 while($row = mysqli_fetch_assoc($result)){
-         
+               
                     ?>
                     <div class="card mb-2">
                         <div class="card-body py-4 py-lg-0 sh-lg-8">
                             <div class="row g-0 h-100 align-content-center">
+                               
                                 <div
-                                    class="col-1 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
-                                       data-bs-toggle="modal" ><?php echo $row['id'];?></a>
-                                </div>
-                                
-                                <div
-                                    class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
+                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <a href="#" class="text-truncate h-100 d-flex align-items-center"
                                        data-bs-toggle="modal" ><?php echo $row['user_id'];?></a>
                                 </div>
-                                
-                                
-                                
-
                                 <div
-                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                    class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['committee_num'];?></div>
+                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
+                                       data-bs-toggle="modal" ><?php echo $row['amount'];?></a>
                                 </div>
-
                                 <div
-                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                    class="col-6   col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 h-lg-100 position-relative">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['committee_start_month'];?></div>
+                                    <a href="#" class="text-truncate h-100 d-flex align-items-center"
+                                       data-bs-toggle="modal" ><?php echo $row['amount'];?></a>
                                 </div>
-
+                             
                                 <div
-                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
-                                    <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['title'];?></div>
-                                </div>
-
-
-                           
-
-                                <div
-                                    class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3">
                                     <div class="text-muted text-small d-lg-none"></div>
                                     <div class="text-alternate"><?php echo $row['status'];?></div>
                                 </div>
                                 <div
-                                    class="col-6 col-lg-1 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['amount'];?></div>
+                                    <div class="text-alternate"><?php echo $row['status'];?></div>
                                 </div>
                               
-
-                             
+                                <div
+                                    class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
+                                    <div class="text-muted text-small d-lg-none"></div>
+                                    <div class="text-alternate"><?php echo $row['status'];?></div>
+                                </div>
+                                
                             </div>
+                            
                         </div>
+                        
                     </div>
                     
-            
-                      <?php 
+                    <?php 
                     }
                   }
                       
+                       
                       ?>
-        </div> -->
+        </div>
 
 
 
+
+
+
+
+        
         
         <!-- Discount List End -->
 
