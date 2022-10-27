@@ -175,27 +175,22 @@ include 'header.php';
           <tr>  
           <td > <?php echo $row['id'];?></td>  
             <td> <?php echo $row['user_id'];?> </td> 
-            <td> <?php echo $row['committee_num'];?></td>  
+            <td type='button' onclick="myFunction()"> <?php echo $row['committee_num'];?></td>  
             <td> <?php echo $row['committee_start_month'];?> </td>    
             <td> <?php echo $row['title'];?> </td>  
             <td> <?php echo $row['months'];?> </td>  
             <td> <?php echo $row['status'];?> </td>  
             <td> <?php echo $row['amount'];?> </td>  
-            <td>
+            <!-- <td>
               <a class="text-truncate h-100 d-flex align-items-center"
               class="text-alternate" type='button' onclick="myFunction()">View Details</a>
-              <!-- <a  class="text-truncate h-100 d-flex align-items-center"
-              class="text-alternate" type='button' onClick='javascript:hideTable();'>Hide</a> -->
+             
                                      
-                                    </td>
+                                    </td> -->
           </tr>  
        
        
-          
-    <!-- <input type='button' onClick='javascript:showTable();' value='show'>
-     <input type='button' onClick='javascript:hideTable();' value='hide'> -->
-                    
-            
+         
                       <?php 
                     }
                   }
@@ -206,9 +201,10 @@ include 'header.php';
       </table>
         </div>
         
-       
+       <br>
+       <br>
                             <!-- Details Committee -->
-
+<h3>Committee Details</h3>
  <div class="row"  id="table">
         <?php
           
