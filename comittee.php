@@ -9,7 +9,7 @@ document.getElementById('table').style.visibility = "hidden";
 }
 </script> -->
 
-<script>
+<!-- <script>
 function myFunction() {
   var x = document.getElementById("table");
   if (x.style.display === "none") {
@@ -18,7 +18,7 @@ function myFunction() {
     x.style.display = "none";
   }
 }
-</script>
+</script> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
@@ -144,8 +144,11 @@ include 'header.php';
 
         <!-- Discount List Start -->
         <div class="row">
+
+
         <?php
-                    $sql = "SELECT * FROM committee_user group by committee_num";  
+          $com_num="";
+        $sql = "SELECT * FROM committee_user group by committee_num";  
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
                     ?>
@@ -172,10 +175,10 @@ include 'header.php';
               
          
          
-          <tr>  
+          <tr  data-toggle="modal" data-id="<?php echo $row['committee_num']; ?>" data-target="#table">  
           <td > <?php echo $row['id'];?></td>  
             <td> <?php echo $row['user_id'];?> </td> 
-            <td type='button' onclick="myFunction()"> <?php echo $row['committee_num'];?></td>  
+  <td type='button'> <?php echo $com_num=$row['committee_num'];?></td>  
             <td> <?php echo $row['committee_start_month'];?> </td>    
             <td> <?php echo $row['title'];?> </td>  
             <td> <?php echo $row['months'];?> </td>  
@@ -205,10 +208,11 @@ include 'header.php';
        <br>
                             <!-- Details Committee -->
 <h3>Committee Details</h3>
- <div class="row"  id="table">
+ <div class="row" id="table" style="display:none ;">
+        <script>alert(getIdFromRow);</script>
         <?php
           
-          $sql = "SELECT * FROM committee_user WHERE committee_num='1658848730'";  
+          $sql = "SELECT * FROM committee_user WHERE committee_num='$com_num'";  
           $result = mysqli_query($conn, $sql) or die("Query Un successfully");
           if(mysqli_num_rows($result) > 0) {
           ?>
@@ -786,10 +790,32 @@ $('table').DataTable();
      
    
  });
+
+
+
+
+
+ 
  
  //  filter function end
  
  
+ $(function(){
+    $('#table').modal({
+        keyboard: true,
+               show:false,
+        
+    }).on('show', function(){
+          var getIdFromRow = $(event.target).closest('tr').data('id');
+        //make your ajax call populate items or what even you need
+        $(this).find('#table').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'))
+    });
+});
+
+
+
+
+
  </script>
  
 </html>
