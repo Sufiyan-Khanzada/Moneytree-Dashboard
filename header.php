@@ -276,6 +276,12 @@ $Upper=strtoupper($name1);
                   <span class="label">Transaction History</span>
                 </a>
               </li>
+              <li>
+                <a href="bankaccount.php">
+                  <i data-cs-icon="wallet" class="icon" data-cs-size="18"></i>
+                  <span class="label">Bank Account </span>
+                </a>
+              </li>
 
               <li>
                 <a href="plan_posting.php">

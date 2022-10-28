@@ -1,36 +1,37 @@
+<!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
-  <!-- <script>
-function showTable(){
-document.getElementById('table').style.visibility = "visible";
+  <!-- <script type="text/javascript">
+  function CheckUsers(val){
+ var element=document.getElementById('user');
+ if(val=='Single User')
+ 
+   element.style.display='block';
+ else  
+   element.style.display='none';
 }
-function hideTable(){
-document.getElementById('table').style.visibility = "hidden";
-}
-</script> -->
 
-<!-- <script>
-function myFunction() {
-  var x = document.getElementById("table");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+
+
+</script>  -->
+<style>
+
+.col-sm-7 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: 58.33333%;
+    float: right;
+    margin-left: 264px;
 }
-</script> -->
+  </style>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> </script>  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>  
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">   
   <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
-  <!-- filter function -->
-<style>
-  .modal-backdrop.show {
-    opacity: 0 !important;
-}
-  </style>
   <?php
 include 'header.php';
 ?>
@@ -52,23 +53,7 @@ include 'header.php';
 
 
 </style>
-<script>
-   $(document).ready(function(){
-	var data;
-    // code to read selected table row cell data (values).
-	$(".btnSelect").on('click',function(){
-		 var currentRow=$(this).closest("tr");
-		 var col1=currentRow.find("td:eq(2)").html();
-		
-		 data=col1;
-   
-		 alert(data);
-
-  });
-});
-</script>
   <body>
-  
     <div id="root">
       
 
@@ -97,7 +82,7 @@ include 'header.php';
                             <i data-cs-icon="chevron-left" data-cs-size="13"></i>
                             <span class="text-small align-middle">Home</span>
                         </a>
-                        <h1 class="mb-0 pb-0 display-4" id="title">Committee</h1>
+                        <h1 class="mb-0 pb-0 display-4" id="title">Bank Account</h1>
                     </div>
                 </div>
                 <!-- Title End -->
@@ -106,17 +91,17 @@ include 'header.php';
                 <div class="w-100 d-md-none"></div>
                 <div
                     class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
-                    <!-- <button
+                    <button
                         type="button"
                         class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto"
                         data-bs-toggle="modal"
                         data-bs-target="#discountAddModal"
                     >
                         <i data-cs-icon="plus"></i>
-                        <span>Add Discount</span>
-                    </button> -->
+                        <span>Add Account</span>
+                    </button>
                     <div class="dropdown d-inline-block d-xl-none">
-                        <button
+                        <!-- <button
                             type="button"
                             class="btn btn-outline-primary btn-icon btn-icon-only ms-1"
                             data-bs-toggle="dropdown"
@@ -125,31 +110,31 @@ include 'header.php';
                             aria-expanded="false"
                         >
                             <i data-cs-icon="sort"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end custom-sort">
+                        </button> -->
+                        <!-- <div class="dropdown-menu dropdown-menu-end custom-sort">
                             <a class="dropdown-item sort" data-sort="code" href="#">Code</a>
                             <a class="dropdown-item sort" data-sort="type" href="#">Type</a>
                             <a class="dropdown-item sort" data-sort="date" href="#">Date</a>
                             <a class="dropdown-item sort" data-sort="usage" href="#">Usage</a>
                             <a class="dropdown-item sort" data-sort="status" href="#">Status</a>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div>
                     <div class="btn-group ms-1 check-all-container">
-                        <!-- <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
+                        <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
                              data-target="#checkboxTable">
                     <span class="form-check float-end">
                       <input type="checkbox" class="form-check-input" id="checkAll"/>
                     </span>
-                        </div> -->
-                        <!-- <button
+                        </div>
+                        <button
                             type="button"
                             class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
                             data-bs-offset="0,3"
                             data-bs-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                        ></button> -->
-                        <!-- <div class="dropdown-menu dropdown-menu-end">
+                        ></button>
+                        <div class="dropdown-menu dropdown-menu-end">
                             <button class="dropdown-item" id="deleteChecked" type="button">Delete</button>
                         </div> -->
                     </div>
@@ -159,141 +144,140 @@ include 'header.php';
         </div>
         <!-- Title and Top Buttons End -->
 
-    
+        <!-- Controls Start -->
+        <div class="row mb-2">
+            <!-- Search Start -->
+            <!-- <div class="col-sm-12 col-md-5 col-lg-3 col-xxl-2 mb-1">
+                <div class="d-inline-block float-md-start me-1 mb-1 search-input-container w-100 shadow bg-foreground">
+                    <input class="form-control" placeholder="Search"/>
+                    <span class="search-magnifier-icon">
+                  <i data-cs-icon="search"></i>
+                </span>
+                    <span class="search-delete-icon d-none">
+                  <i data-cs-icon="close"></i>
+                </span>
+                </div>
+            </div> -->
+            <!-- Search End -->
+
+            <div class="col-sm-12 col-md-7 col-lg-9 col-xxl-10 text-end mb-1">
+                <div class="d-inline-block">
+                    <!-- Print Button Start -->
+                    <!-- <button
+                        class="btn btn-icon btn-icon-only btn-foreground-alternate shadow"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-delay="0"
+                        title="Print"
+                        type="button"
+                    >
+                        <i data-cs-icon="print"></i>
+                    </button> -->
+                    <!-- Print Button End -->
+
+                    <!-- Export Dropdown Start -->
+                    <div class="d-inline-block">
+                        <!-- <button class="btn p-0" data-bs-toggle="dropdown" type="button" data-bs-offset="0,3">
+                    <span
+                        class="btn btn-icon btn-icon-only btn-foreground-alternate shadow dropdown"
+                        data-bs-delay="0"
+                        data-bs-placement="top"
+                        data-bs-toggle="tooltip"
+                        title="Export"
+                    >
+                      <i data-cs-icon="download"></i>
+                    </span>
+                        </button>
+                        <div class="dropdown-menu shadow dropdown-menu-end">
+                            <button class="dropdown-item export-copy" type="button">Copy</button>
+                            <button class="dropdown-item export-excel" type="button">Excel</button>
+                            <button class="dropdown-item export-cvs" type="button">Cvs</button>
+                        </div> -->
+                    </div>
+                    <!-- Export Dropdown End -->
+
+                    <!-- Length Start -->
+                    <div class="dropdown-as-select d-inline-block" data-childSelector="span">
+                        <!-- <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" data-bs-offset="0,3">
+                    <span
+                        class="btn btn-foreground-alternate dropdown-toggle"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-delay="0"
+                        title="Item Count"
+                    >
+                      10 Items
+                    </span>
+                        </button>
+                        <div class="dropdown-menu shadow dropdown-menu-end">
+                            <a class="dropdown-item" href="#">5 Items</a>
+                            <a class="dropdown-item active" href="#">10 Items</a>
+                            <a class="dropdown-item" href="#">20 Items</a>
+                        </div>
+                    </div> -->
+                    <!-- Length End -->
+                </div>
+            </div>
+        </div>
+        <!-- Controls End -->
 
         <!-- Discount List Start -->
         <div class="row">
-
-
-        <?php 
-  
-
-      
-        $sql = "SELECT * FROM committee_user group by committee_num";  
+        <?php
+                    $sql = "SELECT * FROM  bank_accounts";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
-                    ?>
-                       <table  class="table table-striped  tabel-bordered">
-                        
-                      <input type="hidden" id="properid"/>
+                      ?>
+                       <table  class="table table-striped table-LIGHT tabel-bordered">  
                        <thead class="thead-dark">
           <tr>  
             <th scope="col"> Id </th>  
-            <th scope="col">      User ID </th>  
-            <th scope="col"> Committee Ref# </th>  
-            <th scope="col">        Starting Month</th> 
-            <th scope="col"> Title</th> 
-            <th scope="col"> Month</th> 
-            <th scope="col">    Status</th> 
-            <th scope="col">    Amount</th> 
+            <th scope="col"> Bank Title </th>  
+            <th scope="col"> Account Title </th>  
+            <th scope="col"> Account number </th>  
+            <th scope="col"> Account_IBAN</th> 
+            <th scope="col"> Action</th> 
              
           </tr>  
         </thead>
         <tbody> 
-             
-        <?php
+          
+          <?php
                       while($row = mysqli_fetch_assoc($result)){
-                        ?>
+                       
+                          
+                    ?>
                     
               
          
          
-          <tr  data-toggle="modal" data-id="<?php echo $row['committee_num']; ?>" data-target="#table">  
+          <tr>  
           <td > <?php echo $row['id'];?></td>  
-          <td> <?php echo $row['user_id'];?> </td> 
-        <!-- <td type='button' class="btnSelect"> <?php echo $com_num=$row['committee_num'];?></td>   -->
-        <td> <?php echo $row['committee_num'];?> </td> 
-        <td> <?php echo $row['committee_start_month'];?> </td>    
-            <td> <?php echo $row['title'];?> </td>  
-            <td> <?php echo $row['months'];?> </td>  
-            <td> <?php echo $row['status'];?> </td>  
-            <td> <?php echo $row['amount'];?> </td>  
-            
+            <td> <?php echo $row['bank_title'];?> </td> 
+            <td> <?php echo $row['acc_ttitle'];?></td>  
+            <td> <?php echo $row['acc_no'];?> </td>  
+            <td> <?php echo $row['acc_iban'];?> </td>  
+           <td><a href='notification-edit.php?id=<?php echo $row['id']; ?>' class="text-truncate h-100 d-flex align-items-center"
+                                     class="text-alternate">Edit</a></td>
             
           </tr>  
        
        
-         
+          
+    
+                    
+            
                       <?php 
                     }
                   }
-                   
                       ?>
                         </tbody>  
                        </tfoot>  
       </table>
         </div>
 
-         <!-- Details Committee -->
-          
-<h3>Committee Details</h3>
 
-<br>
-<br>
-        <?php 
-  
-
-      
-  $sql = "SELECT * FROM committee_user";  
-              $result = mysqli_query($conn, $sql) or die("Query Un successfully");
-              if(mysqli_num_rows($result) > 0) {
-              ?>
-                 <table  class="table table-striped  tabel-bordered">
-                  
-                <input type="hidden" id="properid"/>
-                 <thead class="thead-dark">
-    <tr>  
-      <th scope="col">      User ID </th>  
-      <th scope="col"> Committee Ref# </th>  
-      <th scope="col">        Starting Month</th> 
-      <th scope="col"> Title</th> 
-      <th scope="col"> Month</th> 
-      <th scope="col">    Status</th> 
-      <th scope="col">    Amount</th> 
-       
-    </tr>  
-  </thead>
-  <tbody> 
-       
-  <?php
-                while($row = mysqli_fetch_assoc($result)){
-                  ?>
-              
-        
-   
-   
-    <!-- <tr  data-toggle="modal" data-id="<?php echo $row['committee_num']; ?>" data-target="#table">   -->
-    
-    <td> <?php echo $row['user_id'];?> </td> 
-  <td> <?php echo $row['committee_num'];?> </td> 
-  <td> <?php echo $row['committee_start_month'];?> </td>    
-      <td> <?php echo $row['title'];?> </td>  
-      <td> <?php echo $row['months'];?> </td>  
-      <td> <?php echo $row['status'];?> </td>  
-      <td> <?php echo $row['amount'];?> </td>  
-      
-      
-    </tr>  
- 
- 
-   
-                <?php 
-              }
-            }
-             
-                ?>
-                  </tbody>  
-                 </tfoot>  
-</table>
-  </div>
-      
-
-
-
-
-
-        
-        
         <!-- Discount List End -->
 
         <!-- Discount Detail Modal Start -->
@@ -303,9 +287,7 @@ include 'header.php';
                     <div class="modal-header">
                         <h5 class="modal-title">Discount Detail</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                   
-                   
-                      </div>
+                    </div>
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
@@ -368,54 +350,51 @@ include 'header.php';
                 </div>
             </div>
         </div>
-        <!-- Discount Detail Modal End -->
 
+        <!-- Discount Detail Modal End -->
+      
         <div class="modal modal-right fade" id="discountAddModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add New Discount</h5>
-                        <button type="button" class="btn-close" aria-label="Close"></button>
+                        <h5 class="modal-title">Add New Account</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form class="post-form" action="addnotification.php" method="post" enctype="multipart/form-data">
-                            <div class="mb-3 w-100">
-                                <label class="form-label">User</label>
-                                <select  name="user_type" class="select-single-no-search">
-                                  <?php
-                                    $sql = "SELECT * FROM users";
-                                    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
-
-                                    while($row = mysqli_fetch_assoc($result)){
-                                    ?>
-                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['id']; ?></option>
-                                  <?php } ?>
-                                </select>
+                    
+                        <form  class="post-form" action="addbankaccount.php" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label class="form-label">Bank Title</label>
+                                <input type="text" name="bank_title" class="form-control"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Title</label>
-                                <input type="text" name="title" class="form-control mask-text"/>
+                                <label class="form-label">Account Title</label>
+                                <input type="text" name="acc_ttitle" class="form-control"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Messages</label>
-                                <input type="text"  name="message"  class="form-control mask-text"/>
+                                <label class="form-label">Account Number</label>
+                                <input type="text" name="acc_no" class="form-control"/>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">date</label>
-                                <input type="datetime-local"  name="date"  class="form-control mask-text"/>
+                                <label class="form-label">Account Iban</label>
+                                <input type="text" name="acc_iban" class="form-control"/>
                             </div>
+                           
+                            
+                            <div class="modal-footer border-0">
                             <button type="submit" value="Save" class="btn btn-icon btn-icon-end btn-primary" >
                             <span>Add</span>
                             <i data-cs-icon="send"></i>
-                            </button>
+                        </button>
+                    </div>     
                         </form>
                     </div>
-                    <div class="modal-footer border-0">
                     
-                    </div>
                 </div>
             </div>
         </div>
+
+
         <!-- Discount Add Modal End -->
     </div>
       </main>
@@ -739,49 +718,7 @@ $('table').DataTable();
     <script src="js/common.js"></script>
     <script src="js/scripts.js"></script>
     <!-- Page Specific Scripts End -->
-
-    
   </body>
-
-  <!-- <script type="text/javascript">
- 
- $(document).ready(function(){
- 
-   $("#fetchval").on('change',function(){
-    var value=$(this).val();
-   //  alert(value);
-     $.ajax({
-       url:"fetch.php",
-       type:"POST",
-       data:'request=' + value,
-       beforeSend:function(){
-         $('.container').html("<span>Working....</span>");
-       },
-       success:function(data){
-         $('.container').html(data);
-       }
-     })
-   });
-     
-   
- });
-
-
-
-</script> -->
-
-
-
- 
- 
- //  filter function end
- 
- 
- 
-
-
-
-
- </script>
  
 </html>
+		
