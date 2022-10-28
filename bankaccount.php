@@ -235,7 +235,7 @@ include 'header.php';
             <th scope="col"> Bank Title </th>  
             <th scope="col"> Account Title </th>  
             <th scope="col"> Account number </th>  
-            <th scope="col"> Account_IBAN</th> 
+            <th scope="col"> IBAN Number</th> 
             <th scope="col"> Action</th> 
             <th scope="col"> Action</th> 
              
