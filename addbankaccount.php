@@ -1,16 +1,16 @@
 <?php include 'connection.php'; ?>
 
 <?php
- $bank_title = $_POST['bank_title'];
- $acc_ttitle = $_POST['acc_ttitle'];
- $acc_no = $_POST['acc_no'];
- $acc_iban = $_POST['acc_iban'];
+ $bank_title1 = $_POST['bank_title'];
+ $acc_ttitle1 = $_POST['acc_ttitle'];
+ $acc_no1 = $_POST['acc_no'];
+ $acc_iban1 = $_POST['acc_iban'];
  
  
 
 
-    $sql = "INSERT INTO bank_accounts (bank_title,acc_ttitle,acc_no,acc_iban) VALUES ('$bank_title',$acc_ttitle','$acc_no','$acc_iban')";
-    $result = mysqli_query($conn, $sql);
+$sql = "INSERT INTO bank_accounts (bank_title,acc_ttitle,acc_no,acc_iban) VALUES ('$bank_title1',$acc_ttitle1','$acc_no1','$acc_iban1')";
+    $result = mysqli_query($conn, $sql) or die("Query Un successfully");
     if($result === TRUE){
         echo "<script type=text/javascript>alert('Account Added');</script>";
     }
