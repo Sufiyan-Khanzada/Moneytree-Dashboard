@@ -26,7 +26,11 @@ function myFunction() {
   <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"> </script>  
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >  
   <!-- filter function -->
-
+<style>
+  .modal-backdrop.show {
+    opacity: 0 !important;
+}
+  </style>
   <?php
 include 'header.php';
 ?>
@@ -48,6 +52,21 @@ include 'header.php';
 
 
 </style>
+<script>
+   $(document).ready(function(){
+	var data;
+    // code to read selected table row cell data (values).
+	$(".btnSelect").on('click',function(){
+		 var currentRow=$(this).closest("tr");
+		 var col1=currentRow.find("td:eq(2)").html();
+		
+		 data=col1;
+   
+		 alert(data);
+
+  });
+});
+</script>
   <body>
   
     <div id="root">
@@ -146,13 +165,17 @@ include 'header.php';
         <div class="row">
 
 
-        <?php
-          $com_num="";
+        <?php 
+  
+
+      
         $sql = "SELECT * FROM committee_user group by committee_num";  
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
                     ?>
-                       <table  class="table table-striped  tabel-bordered">  
+                       <table  class="table table-striped  tabel-bordered">
+                        
+                      <input type="hidden" id="properid"/>
                        <thead class="thead-dark">
           <tr>  
             <th scope="col"> Id </th>  
@@ -177,13 +200,14 @@ include 'header.php';
          
           <tr  data-toggle="modal" data-id="<?php echo $row['committee_num']; ?>" data-target="#table">  
           <td > <?php echo $row['id'];?></td>  
-            <td> <?php echo $row['user_id'];?> </td> 
-  <td type='button'> <?php echo $com_num=$row['committee_num'];?></td>  
+          <td> <?php echo $row['user_id'];?> </td> 
+  <td type='button' class="btnSelect"> <?php echo $com_num=$row['committee_num'];?></td>  
             <td> <?php echo $row['committee_start_month'];?> </td>    
             <td> <?php echo $row['title'];?> </td>  
             <td> <?php echo $row['months'];?> </td>  
             <td> <?php echo $row['status'];?> </td>  
             <td> <?php echo $row['amount'];?> </td>  
+            
             <!-- <td>
               <a class="text-truncate h-100 d-flex align-items-center"
               class="text-alternate" type='button' onclick="myFunction()">View Details</a>
@@ -207,12 +231,14 @@ include 'header.php';
        <br>
        <br>
                             <!-- Details Committee -->
+                            <div class="row" id="table" style="display:none ;">
+ 
 <h3>Committee Details</h3>
- <div class="row" id="table" style="display:none ;">
-        <script>alert(getIdFromRow);</script>
+ <?php $name='<script>document.write(data)</script>'; 
+ ?>
         <?php
           
-          $sql = "SELECT * FROM committee_user WHERE committee_num='$com_num'";  
+          $sql = "SELECT * FROM committee_user WHERE committee_num='$name'";  
           $result = mysqli_query($conn, $sql) or die("Query Un successfully");
           if(mysqli_num_rows($result) > 0) {
           ?>
@@ -284,7 +310,7 @@ include 'header.php';
                                 <div
                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3">
                                     <div class="text-muted text-small d-lg-none"></div>
-                                    <div class="text-alternate"><?php echo $row['status'];?></div>
+                                    <div class="text-alternate"><?php echo $row['title'];?></div>
                                 </div>
                                 <div
                                     class="col-6 col-lg-2 d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-4">
@@ -793,6 +819,8 @@ $('table').DataTable();
 
 
 
+</script>
+
 
 
  
@@ -800,18 +828,7 @@ $('table').DataTable();
  //  filter function end
  
  
- $(function(){
-    $('#table').modal({
-        keyboard: true,
-               show:false,
-        
-    }).on('show', function(){
-          var getIdFromRow = $(event.target).closest('tr').data('id');
-        //make your ajax call populate items or what even you need
-        $(this).find('#table').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'))
-    });
-});
-
+ 
 
 
 
