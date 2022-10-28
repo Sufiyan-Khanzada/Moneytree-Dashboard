@@ -10,7 +10,7 @@
  
 
 
-$sql = "INSERT INTO bank_accounts (bank_title,acc_ttitle,acc_no,acc_iban) VALUES ('$bank_title1','$acc_ttitle1','$acc_no1','$acc_iban1')";
+$sql = "INSERT INTO bank_accounts (bank_title,acc_ttitle,acc_no,acc_iban) VALUES ('$bank_title1','$acc_ttitle1','$acc_no1','$acc_iban1  ')";
 
 
 // INSERT INTO `bank_accounts`(`id`, `bank_title`, `acc_ttitle`, `acc_no`, `acc_iban`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]')
