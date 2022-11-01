@@ -131,8 +131,7 @@ $user_id="";
 
             <div class="row">
             
-                  <h2  class="small-title"  style="padding-top:10px;">User Details</h2>
-
+            <h2  class="small-title"  style="padding-top:10px;">User Details</h2>
 <div class="col-12 col-md-4 col-lg-5 ">
 <div class="card h-100 hover-scale-up cursor-pointer" >
  <div class="card-body d-flex flex-column align-items-center">
