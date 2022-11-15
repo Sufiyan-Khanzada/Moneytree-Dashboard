@@ -393,13 +393,7 @@ include 'header.php';
                             <label class="form-label">Send To</label>
                                 <br>
                                <div class="form-label" data-childselector="span">
-   <!-- <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="user">
-  <option selected>Select users</option>
-  <option value="Single User">Single User</option>
-  <option value="Send To All">Send To All</option>
-  
-  
-</select> -->
+
 <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="user" onchange='CheckUsers(this.value);'>
 <!-- <select name="user" onchange='CheckColors(this.value);'>  -->
    
