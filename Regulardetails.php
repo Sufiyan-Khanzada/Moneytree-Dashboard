@@ -1,3 +1,9 @@
+<?php
+
+if(!$_GET['id']==''){
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-footer="true" data-override='{"attributes": {"placement": "vertical", "layout": "boxed" }, "storagePrefix": "ecommerce-platform"}'>
   <head>
@@ -90,53 +96,8 @@ include 'header.php';
                 <div class="w-100 d-md-none"></div>
                 <div
                     class="col-12 col-sm-6 col-md-auto d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
-                    <!-- <button
-                        type="button"
-                        class="btn btn-outline-primary btn-icon btn-icon-start ms-0 ms-sm-1 w-100 w-md-auto"
-                        data-bs-toggle="modal"
-                        data-bs-target="#discountAddModal"
-                    >
-                        <i data-cs-icon="plus"></i>
-                        <span>Add Account</span>
-                    </button> -->
-                    <div class="dropdown d-inline-block d-xl-none">
-                        <!-- <button
-                            type="button"
-                            class="btn btn-outline-primary btn-icon btn-icon-only ms-1"
-                            data-bs-toggle="dropdown"
-                            data-bs-auto-close="outside"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            <i data-cs-icon="sort"></i>
-                        </button> -->
-                        <!-- <div class="dropdown-menu dropdown-menu-end custom-sort">
-                            <a class="dropdown-item sort" data-sort="code" href="#">Code</a>
-                            <a class="dropdown-item sort" data-sort="type" href="#">Type</a>
-                            <a class="dropdown-item sort" data-sort="date" href="#">Date</a>
-                            <a class="dropdown-item sort" data-sort="usage" href="#">Usage</a>
-                            <a class="dropdown-item sort" data-sort="status" href="#">Status</a>
-                        </div> -->
-                    <!-- </div>
-                    <div class="btn-group ms-1 check-all-container">
-                        <div class="btn btn-outline-primary btn-custom-control p-0 ps-3 pe-2"
-                             data-target="#checkboxTable">
-                    <span class="form-check float-end">
-                      <input type="checkbox" class="form-check-input" id="checkAll"/>
-                    </span>
-                        </div>
-                        <button
-                            type="button"
-                            class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
-                            data-bs-offset="0,3"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        ></button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <button class="dropdown-item" id="deleteChecked" type="button">Delete</button>
-                        </div> -->
-                    </div>
+                   
+                   
                 </div>
                 <!-- Top Buttons End -->
             </div>
@@ -175,47 +136,9 @@ include 'header.php';
                     <!-- Print Button End -->
 
                     <!-- Export Dropdown Start -->
-                    <div class="d-inline-block">
-                        <!-- <button class="btn p-0" data-bs-toggle="dropdown" type="button" data-bs-offset="0,3">
-                    <span
-                        class="btn btn-icon btn-icon-only btn-foreground-alternate shadow dropdown"
-                        data-bs-delay="0"
-                        data-bs-placement="top"
-                        data-bs-toggle="tooltip"
-                        title="Export"
-                    >
-                      <i data-cs-icon="download"></i>
-                    </span>
-                        </button>
-                        <div class="dropdown-menu shadow dropdown-menu-end">
-                            <button class="dropdown-item export-copy" type="button">Copy</button>
-                            <button class="dropdown-item export-excel" type="button">Excel</button>
-                            <button class="dropdown-item export-cvs" type="button">Cvs</button>
-                        </div> -->
-                    </div>
-                    <!-- Export Dropdown End -->
+                   
 
-                    <!-- Length Start -->
-                    <div class="dropdown-as-select d-inline-block" data-childSelector="span">
-                        <!-- <button class="btn p-0 shadow" type="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" data-bs-offset="0,3">
-                    <span
-                        class="btn btn-foreground-alternate dropdown-toggle"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        data-bs-delay="0"
-                        title="Item Count"
-                    >
-                      10 Items
-                    </span>
-                        </button>
-                        <div class="dropdown-menu shadow dropdown-menu-end">
-                            <a class="dropdown-item" href="#">5 Items</a>
-                            <a class="dropdown-item active" href="#">10 Items</a>
-                            <a class="dropdown-item" href="#">20 Items</a>
-                        </div>
-                    </div> -->
-                    <!-- Length End -->
+                 
                 </div>
             </div>
         </div>
@@ -224,9 +147,10 @@ include 'header.php';
         <!-- Discount List Start -->
         <div class="row">
         <?php
-                    $sql = "SELECT * FROM  bank_accounts";
+                    $sql = "SELECT * FROM wallet WHERE tranaction_type='add' OR tranaction_type='subtract'";
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
+
                       ?>
                        <table  class="table table-striped table-LIGHT tabel-bordered">  
                        <thead class="thead-dark">
@@ -245,18 +169,26 @@ include 'header.php';
           
           <?php
                       while($row = mysqli_fetch_assoc($result)){
-                    ?>
+
+                        $sql2 = "SELECT * FROM  users where id=".$_GET['id'];
+                              $result2 = mysqli_query($conn, $sql2);
+                              if(mysqli_num_rows($result2) > 0){
+                            while($row1 = mysqli_fetch_assoc($result2)){
+                              $user_id=$row['id'];
+                            ?>
+                          
+
                     
               
-         
+                            
          
           <tr>  
             <td > <?php echo $row['id'];?></td>  
-            <td> <?php echo $row['bank_title'];?> </td> 
-            <td> <?php echo $row['acc_ttitle'];?></td>  
-            <td> <?php echo $row['acc_no'];?> </td>  
-            <td> <?php echo $row['acc_iban'];?> </td>  
-            <td> <?php echo $row['acc_iban'];?> </td>  
+            <td > <?php echo $row['user_id'];?></td>  
+            <td> <?php echo $row1['name'];?></td>  
+            <td> <?php echo $row['tranaction_type'];?> </td>  
+            <td> <?php echo $row['amount'];?> </td>  
+            <td> <?php echo $row['time'];?> </td>  
           
             
           </tr>  
@@ -267,7 +199,7 @@ include 'header.php';
                     
             
                       <?php 
-                    }
+                    }}}
                   }
                       ?>
                         </tbody>  
@@ -715,4 +647,12 @@ $('table').DataTable();
   </body>
  
 </html>
-		
+<?php
+}
+else {
+
+
+  echo "<script>alert('ID Not Found');</script>";
+}
+
+?>
