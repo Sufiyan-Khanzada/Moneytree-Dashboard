@@ -829,8 +829,7 @@ $user_id="";
                       
                       
                        <div class="row">
-                        
-                            <a href="Regulardetails.php"> <h2  class="small-title"  style="padding-top:10px " >Regular Savings</h2>
+ <a  href='Regulardetails.php?id=<?php echo $_GET['id']; ?>'> <h2  class="small-title"  style="padding-top:10px " >Regular Savings</h2>
                              <!-- <a href="Regulardetails.php"> <button  type="button" class="btn btn-primary w-100 me-2">Regular Savings</button></a> -->
                             <div class="col-6 col-md-4 col-lg-5">
                             <div class="card h-100 hover-scale-up cursor-pointer">

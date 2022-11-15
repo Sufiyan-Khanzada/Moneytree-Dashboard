@@ -147,7 +147,9 @@ include 'header.php';
         <!-- Discount List Start -->
         <div class="row">
         <?php
-                    $sql = "SELECT * FROM wallet WHERE tranaction_type='add' OR tranaction_type='subtract'";
+                    // $sql = "SELECT * FROM wallet WHERE tranaction_type='add' OR tranaction_type='subtract'";
+                    $sql = " SELECT * FROM `wallet` WHERE plan_name='Regular Savings'";
+                   
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
 
