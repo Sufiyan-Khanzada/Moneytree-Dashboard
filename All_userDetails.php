@@ -752,16 +752,21 @@ $user_id="";
                     <!-- Bonus committe -->
                     <div class="row">
                     <h2 class="small-title"  style="padding-top:10px ">Bonus Committe</h2>
-                            <div class="col-6 col-md-4 col-lg-3">
+                 
+                    <div class="col-6 col-md-4 col-lg-3">
                             <div class="card h-100 hover-scale-up cursor-pointer">
                                 <div class="card-body d-flex flex-column align-items-center">
                                     <div
                                         class="sw-6 sh-6 rounded-xl d-flex justify-content-center align-items-center border border-primary mb-4">
                                         <i data-cs-icon="dollar" class="text-primary"></i>
                                     </div>
+                                    
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
-                                 6 Months
+                                   <a href="BC-6Months.php?id=<?php echo $_GET['id']; ?>">
+                                    6 Months
+                    </a>
                                     </div>
+                                    <!-- <a  href='BC-6Months.php?id=<?php echo $_GET['id']; ?>'> <h2  class="small-title"  style="padding-top:10px " >        6 Months</h2> -->
                                     <?php
                     $sql = "SELECT SUM(amount)  as total1 FROM wallet  where plan_name ='BC_6Months' AND tranaction_type='add' AND user_id =".$_GET['id'];
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
@@ -797,7 +802,9 @@ $user_id="";
                                         <i data-cs-icon="dollar" class="text-primary" ></i>
                                     </div>
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
-                                     10 Months
+                                    <a href="BC-10Months.php?id=<?php echo $_GET['id']; ?>">
+                                    10 Months
+                    </a>
                                     </div>
 
                                      <?php
