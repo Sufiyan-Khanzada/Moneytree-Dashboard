@@ -611,7 +611,9 @@ $user_id="";
                                         <i data-cs-icon="dollar" class="text-primary"></i>
                                     </div>
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
+                                    <a href="Lum-3Months.php?id=<?php echo $_GET['id']; ?>">
                                 3 Months
+                                    </a>
                                     </div>
                                     <?php
                     $sql = "SELECT SUM(amount)  as total1 FROM wallet  where plan_name ='3Months' AND tranaction_type='add' AND user_id =".$_GET['id'];
@@ -647,7 +649,9 @@ $user_id="";
                                     </div>
                                     
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
+                                    <a href="Lum-6Months.php?id=<?php echo $_GET['id']; ?>">
                                     6 Months
+                                    </a>
                                     </div>
                                     <?php
                     $sql = "SELECT SUM(amount)  as total1 FROM wallet  where plan_name ='6Months' AND tranaction_type='add' AND user_id =".$_GET['id'];
@@ -681,7 +685,9 @@ $user_id="";
                                         <i data-cs-icon="dollar" class="text-primary"></i>
                                     </div>
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
+                                    <a href="Lum-1Year.php?id=<?php echo $_GET['id']; ?>">
                                     1 Year
+                                    </a>
                                     </div>
                                 
                                     <?php
@@ -716,7 +722,9 @@ $user_id="";
                                         <i data-cs-icon="dollar" class="text-primary"></i>
                                     </div>
                                     <div class="mb-1 d-flex align-items-center text-alternate text-small lh-1-25">
+                                    <a href="Lum-3Yearplus.php?id=<?php echo $_GET['id']; ?>">
                                     3 Year Plus
+                                    </a>
                               </div>
                               
                               <?php
