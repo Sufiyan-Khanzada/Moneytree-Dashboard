@@ -857,7 +857,7 @@ $user_id="";
                                     Regular Savings
                                     </div>
                                     <?php
-                    $sql = "SELECT SUM(amount) c as total1 FROM wallet  where plan_name ='Regular Savings' AND tranaction_type='add' AND user_id =".$_GET['id'];
+                    $sql = "SELECT SUM(amount) as total1 FROM wallet  where plan_name ='Regular Savings' AND tranaction_type='add' AND user_id =".$_GET['id'];
                     $result = mysqli_query($conn, $sql) or die("Query Un successfully");
                     if(mysqli_num_rows($result) > 0) {
                     
