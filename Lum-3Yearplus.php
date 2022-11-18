@@ -162,7 +162,7 @@ include 'header.php';
             <th scope="col"> Customer Name </th>  
             <th scope="col"> Transaction_Type </th>  
             <th scope="col"> Amount</th> 
-            <th scope="col"> Date</th> 
+            <th scope="col"> Datex</th> 
      
              
           </tr>  
