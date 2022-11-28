@@ -4,7 +4,7 @@
  $plan_id = $_POST['plan_id'];
  $plan_title = $_POST['plan_title'];
 
-
+ 
 //  $enter_pin = $_POST['enter_pin'];
  $date = $_POST['date'];
  $profit_percent = $_POST['profit_percent'];
@@ -21,5 +21,5 @@
     //     die(myqli_error);
     // }
 
-header("Location: http://testlinks.code7labs.com/seven-draft/Dashboard/add-brands.php");
+header("Location: http://demo.code7labs.com/Moneytree-Dashboard/plan_posting.php");
 ?>
